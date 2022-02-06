@@ -1,16 +1,23 @@
 import { Router } from "express";
-import AuthUserController from "./controllers/AuthUserController";
-import CreateScheduleController from "./controllers/CreateScheduleController";
+import { ClientController, AuthUserController, ScheduleController } from "./controllers";
 import { ensureAuth } from "./middlewares/ensureAuth";
 
-const router =  Router();
-const userController = new AuthUserController();
-const scheduleController = new CreateScheduleController();
+const router = Router();
 
-router.post("/register", userController.register);
+/**
+ * User Routes
+ */
+router.post("/register", AuthUserController.register);
+router.post("/login", AuthUserController.login);
 
-router.post("/login", userController.login);
+/**
+ * Schedule Routes
+ */
+router.post("/service", ensureAuth, ScheduleController.create);
 
-router.post("/service", ensureAuth, scheduleController.handle)
+/**
+ * Client Routes
+ */
+router.post("/client", ensureAuth, ClientController.create);
 
 export { router }
