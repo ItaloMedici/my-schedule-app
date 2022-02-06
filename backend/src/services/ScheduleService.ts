@@ -1,8 +1,8 @@
 import { Schedule } from "../models";
 import prismaClient from "../prisma";
 
-class CreateScheduleService {
-  async execute(scheduleInfo: Schedule, userId: string) {
+class ScheduleService {
+  static async create(scheduleInfo: Schedule, userId: string) {
 
     const {
       description,
@@ -26,4 +26,4 @@ class CreateScheduleService {
   }
 }
 
-export default CreateScheduleService;
+export default ScheduleService;
