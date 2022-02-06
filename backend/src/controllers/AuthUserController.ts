@@ -3,11 +3,11 @@ import AuthUserService from "../services/AuthUserService";
 
 class AuthUserController {
 
-  async register(req: Request, res: Response) {
+  static async register(req: Request, res: Response) {
     try {
       const data = req.body
 
-      const user = await new AuthUserService().register(data)
+      const user = await AuthUserService.register(data)
       return res.json(user)
 
     } catch (error) {
@@ -16,11 +16,11 @@ class AuthUserController {
     }
   }
 
-  async login(req: Request, res: Response) {
+  static async login(req: Request, res: Response) {
     try {
       const data = req.body
 
-      const user = await new AuthUserService().login(data)
+      const user = await AuthUserService.login(data)
       return res.json(user)
 
     } catch (error) {

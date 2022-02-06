@@ -10,7 +10,7 @@ type UserData = {
 }
 
 class AuthUserService {
-  async register(data: UserData) {
+  static async register(data: UserData) {
 
     data.password = bcrypt.hashSync(data.password, 8);
 
@@ -21,7 +21,7 @@ class AuthUserService {
     return user;
   }
 
-  async login(data: UserData) {
+  static async login(data: UserData) {
     const { email, password } = data;
 
     const user = await prismaClient.user.findUnique({
