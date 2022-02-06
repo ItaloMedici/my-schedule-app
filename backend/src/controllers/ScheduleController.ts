@@ -12,6 +12,38 @@ class ScheduleController {
     return res.json(result)
     
   }
+  
+  static async getAll(req: Request, res: Response) {
+    const result = await ScheduleService.findAll();
+
+    return res.json(result);
+  }
+
+  static async get(req: Request, res: Response) {
+    const { id } = req.params;
+
+    try {
+      const result = await ScheduleService.find(id)
+
+      return res.json(result);
+
+    } catch (err) {
+      res.json({ error: err.message })
+    }
+  }
+
+  static async delete(req: Request, res: Response) {
+    const { id } = req.params;
+    
+    try {
+      const result = await ScheduleService.delete(id)
+
+      return res.json(result);
+
+    } catch (err) {
+      res.json({ error: err.message })
+    }
+  }
 }
 
 export default ScheduleController;
