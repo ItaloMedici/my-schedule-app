@@ -4,17 +4,18 @@ import { ButtonStyled } from './styles';
 
 type ButtonProps = {
   label: string;
-  onClick?: (e: React.MouseEvent<HTMLElement>) => void
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+  startIcon?: React.ReactNode;
+  endIcon?: React.ReactNode;
 }
 
-const Button: React.FC<ButtonProps> = ({ label, onClick }) => {
+const Button: React.FC<ButtonProps> = ({ label, onClick, startIcon, endIcon }) => {
   return (
     <>
       <ButtonStyled
         onClick={onClick}
-        startIcon={
-          <AddIcon />
-        }
+        startIcon={startIcon}
+        endIcon={endIcon}
       >
         {label}
       </ButtonStyled>
