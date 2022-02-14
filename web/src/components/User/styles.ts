@@ -7,6 +7,13 @@ export const Container = styled.div`
   h1 {
     color: var(--gray-800);
     font-size: 18px;
+    font-weight: 500
+  }
+
+  @media (max-width: 400px) {
+    h1 {
+      display: none;
+    }
   }
 `;
 
