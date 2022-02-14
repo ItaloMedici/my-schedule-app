@@ -16,19 +16,19 @@ export default createGlobalStyle`
 
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 1112px) {
     * {
       --horizontalPadding: 160px;
     }
   }
 
-  @media (max-width: 650px) {
+  @media (max-width: 952px) {
     * {
       --horizontalPadding: 100px;
     }
   }
 
-  @media (max-width: 500px) {
+  @media (max-width: 830px) {
     * {
       --horizontalPadding: 50px;
     }
@@ -54,7 +54,7 @@ export default createGlobalStyle`
   *, button, input {
     border: 0;
     background: none;
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+    font-family: "Roboto", -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
     color: var(--black);
   }
 
