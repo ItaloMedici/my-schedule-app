@@ -9,7 +9,10 @@ const Navbar: React.FC = () => {
   return (
     <Container>
       <User />
-      <ButtonIcon onClick={() => { }}>
+      <ButtonIcon 
+        onClick={() => { }}
+        color={"var(--gray-200)"}
+      >
         <ExitToAppIcon />
       </ButtonIcon>
     </Container>
