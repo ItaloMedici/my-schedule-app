@@ -1,5 +1,5 @@
-import { ExtendButtonBase, IconButton, IconButtonTypeMap } from '@mui/material';
 import React from 'react';
+import { IconButton } from './styles';
 
 // import { Container } from './styles';
 
@@ -19,7 +19,6 @@ const ButtonIcon: React.FC<ButtonIconProps> = ({ children, onClick, color = "whi
   return (
     <IconButton
       onClick={onClick}
-      sx={style}
       {...rest}
     >
       {children}

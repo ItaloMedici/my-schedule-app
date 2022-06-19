@@ -1,9 +1,9 @@
 import React from 'react';
 import ButtonIcon from '../ButtonIcon';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 import { Container } from './styles';
 import User from '../User';
+import { ExitIcon } from '@radix-ui/react-icons';
 
 const Navbar: React.FC = () => {
   return (
@@ -11,9 +11,9 @@ const Navbar: React.FC = () => {
       <User />
       <ButtonIcon 
         onClick={() => { }}
-        color={"var(--gray-200)"}
+        //color={"var(--gray-200)"}
       >
-        <ExitToAppIcon />
+        <ExitIcon />
       </ButtonIcon>
     </Container>
   );
