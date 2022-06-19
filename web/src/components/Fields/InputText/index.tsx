@@ -1,27 +1,24 @@
-import { OutlinedInput, StandardTextFieldProps, TextField } from '@mui/material';
-import React from 'react';
+import { Input, Container, Label } from './styles';
 
-// import { Container } from './styles';
-
-type TextFieldProps = {
-  label: string;
-  error?: boolean;
-  endAdornment?: React.ReactNode;
-  type?: boolean;
+export type TextFieldProps = {
+  label?: string;
+  value: any,
+  name: string,
+  onChange?: (e: any) => void,
+  type?: "text" | "password"
 }
 
-const InputText: React.FC<TextFieldProps> = ({ label, error = false, endAdornment, type }) => {
+
+const InputText: React.FC<TextFieldProps> = (
+  { label, value, onChange, name, children, type = "text" }
+) => {
   return (
-    <TextField
-      size="small"
-      label={label}
-      error={error}
-      type={type ? 'text' : 'password'}
-      InputProps={{
-        endAdornment:(endAdornment)
-      }}
-    />
+    <Container>
+      {label && <Label>{label}</Label>}
+      <Input type={type} onChange={onChange} value={value} name={name} />
+      {children}
+    </Container>
   );
 }
 
-export default InputText;
+export { InputText };

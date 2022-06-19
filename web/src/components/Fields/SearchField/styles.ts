@@ -1,23 +1,17 @@
-import { TextField } from "@mui/material";
-import { styled } from "@mui/system";
+import { styled } from "../../../theme/stitches.config";
+import InputText from "../InputText";
 
-export const TextFieldStyled = styled(TextField, {})`
+export const TextFieldStyled = styled('input', {
+  background: 'var(--white)',
+  borderRadius: '36px',
 
-  .MuiOutlinedInput-root {
-    background: var(--white);
-    border-radius: 36px;
+  'input': {
+    border: 'none',
+  },
 
-    fieldset {
-      border: none;
-    }
+  boxShadow: '0 0 10px $gray1',
+
+  '&:focus': {
+    border: '1px solid var(--gray-100) !important',
   }
-
-
-  .Mui-focused {
-    box-shadow: 0 0 10px var(--gray-100);
-
-    fieldset {
-      border: 1px solid var(--gray-100) !important;
-    }
-  }
-`;
+});
