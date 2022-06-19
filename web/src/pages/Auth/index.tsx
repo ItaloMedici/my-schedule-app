@@ -1,16 +1,15 @@
-import { Divider, InputAdornment } from '@mui/material';
-import React, { useState } from 'react';
-import Button from '../../components/Button';
-import InputText from '../../components/Fields/InputText';
-import LoginIcon from '@mui/icons-material/Login';
+import { EnterIcon } from '@radix-ui/react-icons';
+import React, { useEffect, useState } from 'react';
+import { Button } from '../../components/Button';
 
-import { Container, Card } from './styles';
 import ButtonIcon from '../../components/ButtonIcon';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import InputPassword from '../../components/Fields/InputPassword';
+import { InputText } from '../../components/Fields/InputText';
+import { User } from "../../models/User";
+import { MainContainer } from '../../styles/MainContainer';
+import { Card } from './styles';
 
-type State = {
-  email: string;
-  password: string;
+interface State extends User {
   showPassword: boolean;
 }
 
@@ -21,51 +20,49 @@ const Auth: React.FC = () => {
     showPassword: false,
   });
 
-  const handleClickShowPassword = () => {
+  useEffect(() => { }, []);
+
+  const handleChange = (e) => {
     setValues({
       ...values,
-      showPassword: !values.showPassword,
+      [e.target.name]: [e.target.value]
     });
   }
 
   return (
-    <Container>
+    <MainContainer>
       <Card>
         <div>
           <h1>Login</h1>
-          <Divider />
         </div>
 
-        <div className="form">
+        <form>
           <InputText
-            label="Email"
+            label='Email' 
+            onChange={handleChange} 
+            value={values.email} 
+            name="email" 
           />
-          <InputText
-            label="Senha"
-            type={values.showPassword}
-            endAdornment={
-              <InputAdornment position="end">
-                <ButtonIcon
-                  onClick={(handleClickShowPassword)}
-                  edge="end"
-                  color="var(--gray-300)"
-                >
-                  {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                </ButtonIcon>
-              </InputAdornment>
-            }
+
+          <InputPassword
+            label='Senha' 
+            onChange={handleChange} 
+            value={values.password} 
+            name="password" 
           />
+
 
           <Button
-            label="Login"
-            endIcon={<LoginIcon />}
-          />
-        </div>
-        <a>Criar conta
+          //onClick={() => { }}
+          >
+            Sign In
+            <EnterIcon color='#FFF' />
+          </Button>
+        </form>
 
-        </a>
+        <a href='/register'>Don't have an account? <span>Sign up</span></a>
       </Card>
-    </Container>
+    </MainContainer>
   );
 }
 
