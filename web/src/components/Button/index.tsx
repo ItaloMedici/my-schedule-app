@@ -1,26 +1,23 @@
 import React from 'react';
-import AddIcon from '@mui/icons-material/Add';
 import { ButtonStyled } from './styles';
 
 type ButtonProps = {
-  label: string;
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
-  startIcon?: React.ReactNode;
-  endIcon?: React.ReactNode;
+  iconLeft?: boolean
 }
 
-const Button: React.FC<ButtonProps> = ({ label, onClick, startIcon, endIcon }) => {
+const Button: React.FC<ButtonProps> = ({ children, onClick, iconLeft = false, ...rest }) => {
   return (
     <>
       <ButtonStyled
         onClick={onClick}
-        startIcon={startIcon}
-        endIcon={endIcon}
+        iconLeft={iconLeft}
+        {...rest}
       >
-        {label}
+        {children}
       </ButtonStyled>
     </>
   );
 }
 
-export default Button;
+export { Button };
