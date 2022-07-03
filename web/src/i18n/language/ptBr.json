@@ -7,7 +7,8 @@
     "signUp": "Registrar",
     "signIn": "Entrar",
     "continue": "Continuar",
-    "search": "Buscar"
+    "search": "Buscar",
+    "exit": "Sair"
   },
   "messages": {
     "signUp": "Não possui uma conta? Registre-se.",
