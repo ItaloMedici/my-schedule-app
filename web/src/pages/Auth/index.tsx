@@ -1,52 +1,43 @@
 import { EnterIcon } from '@radix-ui/react-icons';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Button } from '../../components/Button';
 
 import InputPassword from '../../components/Fields/InputPassword';
 import { InputText } from '../../components/Fields/InputText';
 import { CardForm } from '../../components/Form/CardForm';
+import { useAuth } from '../../contexts/auth';
 import { User } from "../../models/User";
-import { authenticate } from '../../services/AuthService';
 import { MainContainer } from '../../styles/MainContainer';
 
-interface State extends User {
-  showPassword: boolean;
-}
-
 const Auth: React.FC = () => {
+  const [invalid, setInvalid] = useState(false);
+  const { signIn } = useAuth();
   const { formatMessage } = useIntl();
-  const navigate = useNavigate();
 
-  const [values, setValues] = useState<State>({
+  const [values, setValues] = useState<User>({
     email: "",
     password: "",
-    showPassword: false,
   });
 
-  useEffect(() => { }, []);
-
   const handleChange = (e) => {
+    setInvalid(false);
     setValues({
       ...values,
       [e.target.name]: e.target.value
     });
   }
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
-
     const { email, password } = values;
 
-    await authenticate({ email, password })
-      .then(resp => {
-        console.log("ok:", resp)
-        navigate('/home', { replace: true })
-      })
-      .catch(err => {
-        console.log("erroo:", err)
-      })
+    if (email && password) {
+      signIn({ email, password });
+    } else {
+      setInvalid(true)
+    }
   }
 
   return (
@@ -61,6 +52,7 @@ const Auth: React.FC = () => {
             value={values.email}
             name="email"
             size='md'
+            invalid={invalid}
           />
 
           <InputPassword
@@ -69,6 +61,7 @@ const Auth: React.FC = () => {
             value={values.password}
             name="password"
             size='md'
+            invalid={invalid}
           />
 
           <Button

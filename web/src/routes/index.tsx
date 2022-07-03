@@ -1,19 +1,11 @@
-import { Route, Routes as Switch } from 'react-router-dom';
-import Auth from '../pages/Auth';
-import Home from '../pages/Home';
-import Register from '../pages/Register';
-
+import { useAuth } from '../contexts/auth';
+import { AppRoutes } from './app.routes';
+import { AuthRoutes } from './auth.routes';
 
 const Routes = () => {
-  return (
-    <Switch>
-      <Route path="/" element={<Auth />} />
-      <Route path="/auth" element={<Auth />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/home" element={<Home />} />
-      <Route path="/*" element={<Home />} />
-    </Switch>
-  )
+  const { signed } = useAuth();
+  console.debug("LOGADO", signed)
+  return signed ? <AppRoutes /> : <AuthRoutes />
 }
 
 export default Routes;
