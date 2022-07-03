@@ -15,6 +15,7 @@ export const {
       primaryLight: '#ffd3c0',
       primaryDark: '#ac7362',
       primaryA: 'hsla(13, 68%, 78%, .3)',
+      primaryAA: 'hsla(13, 68%, 78%, .15)',
 
       backgrond: '#FFF',
 
@@ -39,7 +40,9 @@ export const {
 
     shadows: {
       primary: '0 0 0 0.2rem $colors$primaryA',
-      error: '0 0 0 0.2rem $colors$errorA'
+      error: '0 0 0 0.2rem $colors$errorA',
+      gray: '0 0 0 0.2rem $colors$gray3',
+      elevation: '0 .3rem .5rem 0 $colors$gray4'
     },
 
     space: {
@@ -99,14 +102,17 @@ export const {
 
   },
   media: {
-    bp1: '(max-width: 1112px)',
+    bp0: '(min-width: 1200px)',
+    bp1: '(max-width: 1200px)',
     bp2: '(max-width: 952px)',
     bp3: '(max-width: 830px)',
+    bp4: '(max-width: 500px)',
   },
   utils: {
     horizontalPadding: () => ({
-      padding: '224px',
-
+      '@bp0': {
+        padding: '0 224px',
+      }, 
       '@bp1': {
         padding: '0 160px'
       },
