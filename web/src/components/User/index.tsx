@@ -1,12 +1,15 @@
 import React from 'react';
+import { useAuth } from '../../contexts/auth';
 
- import { Container, UserImage } from './styles';
+import { Container, UserImage } from './styles';
 
 const User: React.FC = () => {
+  const { user } = useAuth();
+
   return (
     <Container>
       <UserImage />
-      <h1>Ítalo Médici Silva Souza </h1>
+      <h1>{user?.name}</h1>
     </Container>
   );
 }
