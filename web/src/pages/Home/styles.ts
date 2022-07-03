@@ -1,26 +1,32 @@
+import SearchField from "../../components/Fields/SearchField";
 import { styled } from "../../theme/stitches.config";
 
 export const Container = styled('div', {});
 
 export const Main = styled('div', {
-  margin: '0 var(--horizontalPadding)',
-
+  horizontalPadding: '',
+  paddingTop: 45,
+  
+  background: '$gray2',
+  height: '100vh',
   display: 'flex',
   flexDirection: 'column',
+
+  overflowY: 'scroll',
 
   '> :nth-child(2)': {
     display: 'none'
   },
 
-  '@media (max-width: 500px) ': {
-    '> :nth-child(2) ': {
+  '@bp3': {
+    '> :nth-child(2)': {
       display: 'inline-flex',
       marginBottom: '10px',
     }
   }
 });
 
-export const Header = styled('div', {
+export const Header = styled('header', {
   display: 'flex',
   alignItems: 'center',
 
@@ -32,6 +38,7 @@ export const Header = styled('div', {
 
   'h1': {
     flex: '1',
+    fontSize: '$2xl'
   }
 });
 
@@ -46,7 +53,7 @@ export const Wrapper = styled('div', {
     display: 'none'
   },
 
-  '@media (max-width: 700px)': {
+  '@bp4': {
     '> :nth-child(2)': {
       display: 'none'
     },
@@ -56,9 +63,64 @@ export const Wrapper = styled('div', {
     }
   },
 
-  '@media (max-width: 500px)': {
+  '@bp3': {
     '> :nth-child(1)': {
       display: 'none'
     }
   }
 });
+
+export const Schedules = styled('div', {
+  display: 'flex',
+  justifyContent: 'space-between',
+
+  '@bp4': {
+    flexDirection: 'column'
+  }
+})
+
+export const DateLegend = styled('aside', {
+  marginRight: '$4',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+
+  h4: {
+    fontSize: '$sm',
+    color: '$textColor',
+    opacity: .6,
+  },
+
+  hr: {
+    borderLeft: '1px solid $gray6',
+    flex: 1,
+    margin: '$2'
+  },
+
+  '@bp4': {
+    marginRight: 0,
+    marginBottom: '$2',
+    flexDirection: 'row',
+
+    hr: {
+      borderTop: '1px solid $gray6',
+    }
+  }
+})
+
+export const Feed = styled('div', {
+  flex: 1,
+  display: 'grid',
+  gap: '$4',
+  '@bp0': {
+    gridTemplateColumns: '1fr 1fr 1fr',
+  },
+
+  '@bp1': {
+    gridTemplateColumns: '1fr 1fr',
+  },
+    
+  '@bp3': {
+    gridTemplateColumns: '1fr'
+  },
+})
