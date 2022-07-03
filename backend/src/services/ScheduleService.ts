@@ -14,36 +14,61 @@ class ScheduleService {
 
     const schedule = clientId
       ? await prismaClient.schedule.create({
-          data: {
-            description,
-            observation,
-            price,
-            appointment,
-            client: { connect: { id: clientId } },
-            user: { connect: { id: userId } }
-          },
-          include: {
-            user: true,
-            client: true
-          }
-        })
+        data: {
+          description,
+          observation,
+          price,
+          appointment,
+          client: { connect: { id: clientId } },
+          user: { connect: { id: userId } }
+        },
+        include: {
+          user: true,
+          client: true
+        }
+      })
       : await prismaClient.schedule.create({
-          data: {
-            ...scheduleInfo,
-            user: { connect: { id: userId } }
-          },
-          include: {
-            user: true,
-            client: true
-          }
-        })
+        data: {
+          ...scheduleInfo,
+          user: { connect: { id: userId } }
+        },
+        include: {
+          user: true,
+          client: true
+        }
+      })
 
     return schedule;
   }
 
 
-  static async findAll() {
-    const allschedule = await prismaClient.schedule.findMany();
+  static async findAll(userId: string) {
+    const allschedule = await prismaClient.schedule.findMany({
+      select: {
+        appointment: true,
+        description: true,
+        price: true,
+        id: true,
+        user: {
+          select: {
+            id: true,
+            name: true
+          }
+        },
+        client: {
+          select: {
+            id: true,
+            name: true
+          }
+        }
+      },
+      where: {
+        userId
+      }
+    });
+
+    if (!allschedule) throw new NotFound("schedule not found");
+
     return allschedule;
   }
 
@@ -52,7 +77,7 @@ class ScheduleService {
       where: { id }
     });
 
-    if (!schedule) return new NotFound("schedule not found");
+    if (!schedule) throw new NotFound("schedule not found");
 
     return schedule;
   }
@@ -62,7 +87,7 @@ class ScheduleService {
       where: { id }
     });
 
-    if (!schedule) return new NotFound("schedule not found");
+    if (!schedule) throw new NotFound("schedule not found");
 
     return schedule;
   }
