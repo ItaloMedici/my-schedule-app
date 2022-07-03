@@ -14,9 +14,16 @@ class ScheduleController {
   }
   
   static async getAll(req: Request, res: Response) {
-    const result = await ScheduleService.findAll();
+    const { userId } = req;
+    try {
+      console.log(req)
+      const result = await ScheduleService.findAll(userId);
+      
+      return res.json(result);
 
-    return res.json(result);
+    } catch (err) {
+      res.status(404).json({ error: err.message })
+    }
   }
 
   static async get(req: Request, res: Response) {
