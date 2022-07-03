@@ -2,13 +2,16 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import { ButtonStyled } from './styles';
 
-type ButtonProps = {
-  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
-  iconLeft?: boolean,
-  idLabel?: string,
-  size?: "xs" | "sm" | "md" | "xl",
-  color?: "primary" | "neutral"
-}
+type ButtonProps =
+  React.ButtonHTMLAttributes<HTMLButtonElement>
+  & React.AriaAttributes
+  & {
+    onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+    iconLeft?: boolean,
+    idLabel?: string,
+    size?: "xs" | "sm" | "md" | "xl",
+    color?: "primary" | "neutral"
+  }
 
 const Button: React.FC<ButtonProps> = (
   { children, onClick, iconLeft = false, idLabel, size, color, ...rest }

@@ -9,6 +9,8 @@ export const ButtonStyled = styled('button', {
   display: 'inline-flex',
   justifyContent: 'center',
   alignItems: 'center',
+  gap: '$2',
+  cursor: 'pointer',
 
   transition: 'background .2s',
   outline: 'none',
