@@ -1,17 +1,30 @@
 import { styled } from "../../../theme/stitches.config";
-import InputText from "../InputText";
 
-export const TextFieldStyled = styled('input', {
-  background: 'var(--white)',
-  borderRadius: '36px',
-
-  'input': {
-    border: 'none',
-  },
+export const Container = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  background: '$gray3',
+  borderRadius: '$full',
+  padding: '$2',
 
   boxShadow: '0 0 10px $gray1',
+  outlineColor: 'transparent',
 
-  '&:focus': {
-    border: '1px solid var(--gray-100) !important',
+  '&:focus-within': {
+    outline: '1px solid $gray7',
+    boxShadow: '$gray'
+  }, 
+  
+  transition: '.2s',
+
+  '& svg': {
+    marginRight: '$2',
+    height: '1.05rem',
+    width: '1.05rem',
   }
+})  
+
+export const SearchStyled = styled('input', {
+  all: 'unset',
+  width: '100%',
 });

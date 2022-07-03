@@ -9,8 +9,8 @@ export const Container = styled('div', {
   position: 'relative',
 })
 
-export const Label = styled(LabelPrimitive.Root, {
-  fontSize: '$md',
+export const Label = styled('label', {
+  fontSize: '$sm',
   marginBottom: '$2'
 });
 
@@ -34,14 +34,17 @@ export const Input = styled('input', {
 
   variants: {
     size: {
+      xs: {
+        padding: '$1'
+      },
       sm: {
-        padding: '$3'
+        padding: '$2'
       },
       md: {
-        padding: '$5'
+        padding: '$3'
       },
       xl: {
-        padding: '$7'
+        padding: '$4'
       }
     },
 

@@ -1,21 +1,34 @@
+import { useIntl } from 'react-intl';
 import { Input, Container, Label } from './styles';
 
 export type TextFieldProps = {
-  label?: string;
+  idLabel?: string;
   value: any,
   name: string,
   onChange?: (e: any) => void,
-  type?: "text" | "password"
+  type?: "text" | "password",
+  size?: "xs" | "sm" | "md" | "xl"
+  idPlaceholder?: string;
 }
 
 
 const InputText: React.FC<TextFieldProps> = (
-  { label, value, onChange, name, children, type = "text" }
+  { idLabel, value, onChange, name, children, idPlaceholder, size, type = "text" }
 ) => {
+  const { formatMessage } = useIntl();
   return (
     <Container>
-      {label && <Label>{label}</Label>}
-      <Input type={type} onChange={onChange} value={value} name={name} />
+      {idLabel &&
+        <Label>{formatMessage({ id: idLabel })}</Label>
+      }
+      <Input
+        size={size}
+        type={type}
+        onChange={onChange}
+        value={value}
+        name={name}
+        placeholder={idPlaceholder && formatMessage({ id: idPlaceholder })}
+      />
       {children}
     </Container>
   );
