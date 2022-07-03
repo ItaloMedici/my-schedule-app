@@ -4,17 +4,19 @@ import ButtonIcon from '../ButtonIcon';
 import { Container } from './styles';
 import User from '../User';
 import { ExitIcon } from '@radix-ui/react-icons';
+import { Button } from '../Button';
 
 const Navbar: React.FC = () => {
   return (
     <Container>
       <User />
-      <ButtonIcon 
+      <Button 
         onClick={() => { }}
-        //color={"var(--gray-200)"}
+        size="xs"
+        color='neutral'
       >
         <ExitIcon />
-      </ButtonIcon>
+      </Button>
     </Container>
   );
 }
