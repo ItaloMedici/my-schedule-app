@@ -1,22 +1,32 @@
 import React from 'react';
+import { useIntl } from 'react-intl';
 import { ButtonStyled } from './styles';
 
 type ButtonProps = {
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
-  iconLeft?: boolean
+  iconLeft?: boolean,
+  idLabel?: string,
+  size?: "xs" | "sm" | "md" | "xl",
+  color?: "primary" | "neutral"
 }
 
-const Button: React.FC<ButtonProps> = ({ children, onClick, iconLeft = false, ...rest }) => {
+const Button: React.FC<ButtonProps> = (
+  { children, onClick, iconLeft = false, idLabel, size, color, ...rest }
+) => {
+  const { formatMessage } = useIntl();
   return (
-    <>
-      <ButtonStyled
-        onClick={onClick}
-        iconLeft={iconLeft}
-        {...rest}
-      >
-        {children}
-      </ButtonStyled>
-    </>
+    <ButtonStyled
+      onClick={onClick}
+      size={size}
+      color={color}
+      {...rest}
+    >
+      {iconLeft && children}
+      {idLabel && (
+        <label>{formatMessage({ id: idLabel })}</label>
+      )}
+      {!iconLeft && children}
+    </ButtonStyled>
   );
 }
 

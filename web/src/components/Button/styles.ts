@@ -2,60 +2,40 @@ import { styled } from "../../theme/stitches.config";
 
 
 export const ButtonStyled = styled('button', {
-  background: '$primary',
-  color: '#FFF',
   fontSize: '$md',
   borderRadius: '$md',
-
-  '&:hover': {
-    background: '$primaryDark',
-  },
-
-  '&:focus, &:active': {
-    boxShadow: '$primary'
-  },
+  height: 'fit-content',
+  position: 'relative',
+  display: 'inline-flex',
+  justifyContent: 'center',
+  alignItems: 'center',
 
   transition: 'background .2s',
+  outline: 'none',
 
-  position: 'relative',
+  '& label': {
+    fontSize: '$sm',
+    flex: 1,
+  },
 
   '& svg': {
-    color: '#FFF',
-
     height: '1.05rem',
     width: '1.05rem',
-
-    position: 'absolute',
   },
 
   variants: {
     size: {
+      xs: {
+        padding: '$1',
+      },
       sm: {
-        padding: '$3',
-
-        '& svg': {
-          right: '$3',
-        }
+        padding: '$2',
       },
       md: {
-        padding: '$6',
-
-        '& svg': {
-          right: '$6',
-        }
+        padding: '$3',
       },
       xl: {
-        padding: '$8',
-
-        '& svg': {
-          right: '$8',
-        }
-      }
-    },
-
-    iconLeft: {
-      true: {
-
+        padding: '$4',
       }
     },
 
@@ -63,40 +43,51 @@ export const ButtonStyled = styled('button', {
       true: {
         width: '100%'
       }
+    },
+
+    color: {
+      primary: {
+        background: '$primary',
+        
+        '&:hover': {
+          background: '$primaryDark',
+        },
+      
+        '&:focus, &:active': {
+          boxShadow: '$primary'
+        },
+
+        '& label': {
+          color: '$backgrond',
+        },
+
+        '& path': {
+          color: '$backgrond'
+        },
+      },
+      neutral: {
+        background: '$backgrond',
+        '&:hover': {
+          background: '$gray2',
+        },
+      
+        '&:focus, &:active': {
+          boxShadow: '$gray2'
+        },
+
+        '& label': {
+          color: '$gray4',
+        },
+
+        '& svg': {
+          color: '$gray4',
+        }
+      },
     }
   },
 
-  compoundVariants: [
-    {
-      size: 'sm',
-      iconLeft: true,
-      css: {
-        '& svg': {
-          left: '$3',
-        }
-      }
-    },
-    {
-      size: 'md',
-      iconLeft: true,
-      css: {
-        '& svg': {
-          left: '$6',
-        }
-      }
-    },
-    {
-      size: 'xl',
-      iconLeft: true,
-      css: {
-        '& svg': {
-          left: '$8',
-        }
-      }
-    },
-  ],
-
   defaultVariants: {
-    size: 'sm'
+    size: 'sm',
+    color: 'primary'
   }
 });
