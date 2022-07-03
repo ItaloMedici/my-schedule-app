@@ -1,47 +1,59 @@
+import { DrawingPinIcon } from "@radix-ui/react-icons";
+import { css } from "@stitches/react";
 import { styled } from "../../theme/stitches.config";
 
 
+
 export const Container = styled('a', {
-  background: '#FFF',
-  width: '230px',
-  height: '105px',
-
-  borderRadius: '10px',
-  border: '1px solid $grey5',
-
-  display: 'flex',
-
+  background: '$backgrond',
+  width: '100%',
+  height: 80,
+  
   overflow: 'hidden',
-
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '$4',
+  justifyContent: 'space-between',
+  borderRadius: '$md',
+  padding: '$2',
+  border: '1px solid $gray4',
   cursor: 'pointer', 
+
+  transition: '.2s',
+
+  '&:hover': {
+    boxShadow: '$elevation'
+  }
 });
 
-
+export const Header = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '$4'
+})
 export const Time = styled('div', {
-  minWidth: '64px',
-  background: 'var(--primary)',
+  width: 50,
+  height: 30,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+  
+  borderRadius: '$md',
+  background: '$primaryAA',
+  flexShrink: 0,
 
   'h1': {
-    color: 'var(--white)',
-    fontSize: '14px',
+    marginTop: 3,
+    //color: '$gray11',
+    color: '#7a5245',
+    fontSize: '$sm',
   }  
 });
 
-export const Info =  styled('div', {
-  width: 'calc(100% - 64px)',
-  padding: '15px',
-
-  display: 'flex',
-  flexDirection: 'column',
-
-  justifyContent: 'space-between',
-
+export const Name =  styled('div', {
   'h2': {
-    fontSize: '16px',
-    color: 'var(--gray-800)',
+    fontSize: '$md',
+    color: '$textColor',
 
     whiteSpace: 'nowrap',
     overflow: 'hidden',
@@ -49,18 +61,15 @@ export const Info =  styled('div', {
   } 
 });
 
-export const Wrapper = styled('div', {
+export const Info = styled('div', {
   display: 'flex',
-  flexDirection: 'column',
   justifyContent: 'space-between',
   alignItems: 'flex-start',
+  gap: '$2',
 
   'p': {
-    fontSize: '14px',
-    color: 'var(--gray-500)',
-  },
-
-  'p + p': {
-    marginTop: '5px',
+    fontSize: '$xs',
+    color: '$textColor',
+    opacity: .6,
   }
 });

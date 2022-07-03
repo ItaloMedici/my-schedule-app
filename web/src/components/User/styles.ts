@@ -5,12 +5,12 @@ export const Container = styled('div', {
   alignItems: 'center',
 
   'h1': {
-    color: 'var(--gray-800)',
-    fontSize: '18px',
+    color: '$textColor',
+    fontSize: '$md',
     fontWeight: 500
   },
 
-  '@media (max-width: 400px)': {
+  '@bp4': {
     'h1': {
       display: 'none',
     }
