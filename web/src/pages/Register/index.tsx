@@ -1,17 +1,21 @@
 import { EnterIcon } from '@radix-ui/react-icons';
-import React, { ChangeEventHandler, useState } from 'react';
+import React, { useState } from 'react';
+import { useIntl } from 'react-intl';
+import { Link } from 'react-router-dom';
 import { Button } from '../../components/Button';
+import InputPassword from '../../components/Fields/InputPassword';
 import { InputText } from '../../components/Fields/InputText';
+import { CardForm } from '../../components/Form/CardForm';
 import { User } from '../../models/User';
+import { register } from '../../services/AuthService';
 import { MainContainer } from '../../styles/MainContainer';
-import { Card } from './styles';
 
-const Register: React.FC = () => {
-  const [values, setValues] = useState<User & { showPassword: boolean }>({
+const handleRegister: React.FC = () => {
+  const {formatMessage} = useIntl();
+  const [values, setValues] = useState<User>({
     email: "",
     name: "",
     password: "",
-    showPassword: false
   });
 
   const handleChange = (e) => {
@@ -21,30 +25,60 @@ const Register: React.FC = () => {
     })
   }
 
+  const handleRegister = (e: any) => {
+    e.preventDefault();
+
+    const { email, password, name } = values;
+    register({ email, password, name })
+      .then(res => {  
+        
+      })
+      .catch(err => {
+
+      })
+  }
+
   return (
     <MainContainer>
-      <Card>
-        <div>
-          <h1>Create a new account</h1>
-        </div>
+      <CardForm>
+        <h1>{formatMessage({id: "label.signUp"})}</h1>
 
-        <form onSubmit={() => alert("aaaa")}>
-          <InputText label='Email' onChange={handleChange} value={values.email} name="email"/>
-          <InputText label='Usuario' value={values.name} name="name"/>
-          <InputText label='Senha' value={values.password} name="password" />
+        <form onSubmit={handleRegister} autoComplete='off'>
+          <InputText
+            idLabel='label.email'
+            onChange={handleChange}
+            value={values.email}
+            name="email"
+            size='md'
+          />
+          <InputText
+            idLabel='label.user'
+            onChange={handleChange}
+            value={values.name}
+            name="name"
+            size='md'
+          />
+          <InputPassword
+            idLabel='label.password'
+            onChange={handleChange}
+            value={values.password}
+            name="password"
+            size='md'
+          />
 
           <Button
-            onClick={() => { }}
+            onClick={handleRegister}
+            idLabel="label.continue"
+            size='md'
           >
-            Registrar
             <EnterIcon color='#FFF' />
           </Button>
         </form>
 
-        <a href='/auth'>Already has account?</a>
-      </Card>
+        <Link to='/auth'>{formatMessage({id: "messages.signUp"})}</Link>
+      </CardForm>
     </MainContainer>
   );
 }
 
-export default Register;
+export default handleRegister;
