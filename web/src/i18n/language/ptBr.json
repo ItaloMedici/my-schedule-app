@@ -1,0 +1,16 @@
+{
+  "label": {
+    "login": "Login",
+    "password": "Senha",
+    "email": "E-mail",
+    "user": "Usuário",
+    "signUp": "Registrar",
+    "signIn": "Entrar",
+    "continue": "Continuar",
+    "search": "Buscar"
+  },
+  "messages": {
+    "signUp": "Não possui uma conta? Registre-se.",
+    "signIn": "Possui uma conta? Entre."
+  }
+}
