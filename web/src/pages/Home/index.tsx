@@ -9,6 +9,8 @@ import { Main, Header, Wrapper, Feed, Schedules, DateLegend } from './styles';
 import Schedule from '../../components/Schedule';
 import { MainContainer } from '../../styles/MainContainer';
 import { useIntl } from 'react-intl';
+import { getAllSchedule } from '../../services/ScheduleService';
+import { useAuth } from '../../contexts/auth';
 
 const Home: React.FC = () => {
   const { formatMessage } = useIntl();
@@ -42,6 +44,8 @@ const Home: React.FC = () => {
     }
   ]
   }]
+
+  getAllSchedule().then(resp => console.log(resp)).catch(err => console.log(err))
 
   return (
     <>
