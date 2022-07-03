@@ -1,20 +1,14 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-
-import Auth from "./pages/Auth";
-import Home from "./pages/Home";
-import Register from "./pages/Register";
+import { IntlProvider } from "react-intl";
+import { messages } from "./i18n";
+import Routes from "./routes";
+import GlobalStyle from "./styles/GlobalStyle";
 
 function App() {
-  console.log("A")
-
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/auth" element={<Auth />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/home" element={<Home />} />
-      </Routes>
-    </BrowserRouter>
+    <IntlProvider locale="pt-BR" defaultLocale="en" messages={messages}>
+      <Routes />
+      {GlobalStyle()}
+    </IntlProvider>
   );
 }
 
