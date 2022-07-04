@@ -1,5 +1,5 @@
 import { api } from "./api";
 
-export const getAllSchedule = async () => {
-  return await api.get("/schedules");
+export const buildFeed = async () => {
+  return await api.get("/build-feed");
 }

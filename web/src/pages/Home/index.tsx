@@ -9,43 +9,19 @@ import { Main, Header, Wrapper, Feed, Schedules, DateLegend } from './styles';
 import Schedule from '../../components/Schedule';
 import { MainContainer } from '../../styles/MainContainer';
 import { useIntl } from 'react-intl';
-import { getAllSchedule } from '../../services/ScheduleService';
+import { buildFeed } from '../../services/ScheduleService';
 import { useAuth } from '../../contexts/auth';
+import { ScheduleFeed } from '../../models/Feed';
 
 const Home: React.FC = () => {
-  const { formatMessage } = useIntl();
+  const { formatMessage, formatDate } = useIntl();
+  const [feed, setFeed] = useState<ScheduleFeed>();
 
-  const schedulesList = [{
-    day: '27/08',
-    schedules: [
-      {
-      id: 0,
-      description: 'Limpeza de Pele',
-      observation: undefined,
-      price: 120,
-      appointment: Date.now,
-      finished: false,
-    },
-    {
-      id: 0,
-      description: 'Cabelo',
-      observation: undefined,
-      price: 120,
-      appointment: Date.now,
-      finished: false,
-    },
-    {
-      id: 0,
-      description: 'Unha',
-      observation: undefined,
-      price: 120,
-      appointment: Date.now,
-      finished: false,
-    }
-  ]
-  }]
-
-  getAllSchedule().then(resp => console.log(resp)).catch(err => console.log(err))
+  useEffect(() => {
+    buildFeed()
+      .then(resp => setFeed(resp.data))
+      .catch(err => alert(err))
+  }, []);
 
   return (
     <>
@@ -70,19 +46,38 @@ const Home: React.FC = () => {
           </Wrapper>
         </Header>
         <SearchField />
-        <Schedules>
-          <DateLegend>
-            <h4>03/07</h4>
-            <hr />
-          </DateLegend>
-          <Feed>
-            <Schedule />
-            <Schedule />
-            <Schedule />
-            <Schedule />
-            <Schedule />
-          </Feed>
+        {feed?.overdue && (
+          <Schedules>
+            <DateLegend>
+              <h4>{formatDate(feed.overdue.label, {
+                  day: '2-digit',
+                  month: '2-digit'
+              })}</h4>
+              <hr />
+            </DateLegend>
+            <Feed>
+              {feed.overdue.schedules.map(schedule => (
+                <Schedule data={schedule} overdue />
+              ))}
+            </Feed>
         </Schedules>
+        )}
+        {feed?.avaliable.map(avaliables => (
+          <Schedules>
+            <DateLegend>
+              <h4>{formatDate(avaliables.label, {
+                  day: '2-digit',
+                  month: '2-digit'
+              })}</h4>
+              <hr />
+            </DateLegend>
+            <Feed>
+              {avaliables.schedules.map(schedule => (
+                <Schedule data={schedule}/>
+              ))}
+            </Feed>
+          </Schedules>
+        ))}
       </Main>
 
     </>

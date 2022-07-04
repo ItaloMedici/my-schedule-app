@@ -73,7 +73,7 @@ export const Wrapper = styled('div', {
 export const Schedules = styled('div', {
   display: 'flex',
   justifyContent: 'space-between',
-
+  marginBottom: '$8',
   '@bp4': {
     flexDirection: 'column'
   }
