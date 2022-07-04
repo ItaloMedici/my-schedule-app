@@ -22,8 +22,8 @@ export const {
       textColor: gray.gray12,
 
       error: red.red11,
-      errorDark: redDark.red3,
-      errorA: redA.redA5,
+      errorDark: redDark.red8,
+      errorA: redA.redA3,
 
       sucess: green.green11,
 
