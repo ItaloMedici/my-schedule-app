@@ -1,4 +1,4 @@
-import { gray, green, red, redA, redDark, sky, yellow } from "@radix-ui/colors";
+import { gray, green, greenA, red, redA, redDark, sky, yellow } from "@radix-ui/colors";
 import { createStitches } from "@stitches/react";
 
 export const {
@@ -24,8 +24,11 @@ export const {
       error: red.red11,
       errorDark: redDark.red8,
       errorA: redA.redA3,
+      errorLight: red.red3,
 
-      sucess: green.green11,
+      success: green.green11,
+      successA: greenA.greenA3,
+      successLight: green.green3,
 
       warning: yellow.yellow11,
 
