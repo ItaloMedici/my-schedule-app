@@ -48,13 +48,8 @@ class ScheduleService {
         appointment: true,
         description: true,
         price: true,
+        finished: true,
         id: true,
-        user: {
-          select: {
-            id: true,
-            name: true
-          }
-        },
         client: {
           select: {
             id: true,
@@ -64,11 +59,12 @@ class ScheduleService {
       },
       where: {
         userId
+      },
+      orderBy: {
+        appointment: 'asc'
       }
     });
-
-    if (!allschedule) throw new NotFound("schedule not found");
-
+    
     return allschedule;
   }
 
