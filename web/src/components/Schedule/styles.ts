@@ -5,7 +5,6 @@ import { styled } from "../../theme/stitches.config";
 
 
 export const Container = styled('a', {
-  background: '$backgrond',
   width: '100%',
   height: 80,
   
@@ -23,6 +22,24 @@ export const Container = styled('a', {
 
   '&:hover': {
     boxShadow: '$elevation'
+  },
+
+  variants: {
+    finalized: {
+      true: {
+        background: '$gray3',
+        opacity: .6,
+      },
+
+      false: {
+        background: '$backgrond',
+
+      }
+    }
+  },
+
+  defaultVariants: {
+    finalized: false
   }
 });
 
@@ -39,15 +56,44 @@ export const Time = styled('div', {
   justifyContent: 'center',
   
   borderRadius: '$md',
-  background: '$primaryAA',
   flexShrink: 0,
 
   'h1': {
     marginTop: 3,
     //color: '$gray11',
-    color: '#7a5245',
     fontSize: '$sm',
-  }  
+  },
+
+  variants: {
+    state: {
+      primary: {
+        h1: {
+          color: '#7a5245',
+        },
+        background: '$primaryAA',
+      },
+
+      overdue: {
+        h1: {
+          color: '$errorDark',
+        },
+        background: '$errorA'
+      },
+
+      finished: {
+        h1: {
+          color: '$textColor',
+        },
+        background: '$gray4',
+        opacity: .7
+      }
+    },
+
+  },
+
+  defaultVariants: {
+    state: 'primary'
+  }
 });
 
 export const Name =  styled('div', {
