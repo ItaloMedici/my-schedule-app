@@ -8,7 +8,9 @@
     "signIn": "Entrar",
     "continue": "Continuar",
     "search": "Buscar",
-    "exit": "Sair"
+    "exit": "Sair",
+    "appointments": "Atendimentos",
+    "newAppointment": "Novo Atendimento"
   },
   "messages": {
     "signUp": "Não possui uma conta? Registre-se.",

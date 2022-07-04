@@ -8,7 +8,9 @@
     "signIn": "Sign In",
     "continue": "Continue",
     "search": "Search",
-    "exit": "Exit"
+    "exit": "Exit",
+    "appointments": "Appointments",
+    "newAppointment": "New Appointment"
   },
   "messages": {
     "signUp": "Don't have an account? Sign up.",

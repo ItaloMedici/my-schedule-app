@@ -1,20 +1,19 @@
+import { PlusIcon } from '@radix-ui/react-icons';
 import React, { useEffect, useState } from 'react';
 import { Button } from '../../components/Button';
-import ButtonIcon from '../../components/ButtonIcon';
 import SearchField from '../../components/Fields/SearchField';
 import Navbar from '../../components/Navbar';
-import { DividerVerticalIcon, PlusIcon } from '@radix-ui/react-icons'
 
-import { Main, Header, Wrapper, Feed, Schedules, DateLegend } from './styles';
-import Schedule from '../../components/Schedule';
-import { MainContainer } from '../../styles/MainContainer';
 import { useIntl } from 'react-intl';
-import { buildFeed } from '../../services/ScheduleService';
-import { useAuth } from '../../contexts/auth';
+import Schedule from '../../components/Schedule';
 import { ScheduleFeed } from '../../models/Feed';
+import { buildFeed } from '../../services/ScheduleService';
+import { DateLegend, Feed, Header, Main, Schedules, Wrapper } from './styles';
+import { useToast } from '../../contexts/toast';
 
 const Home: React.FC = () => {
   const { formatMessage, formatDate } = useIntl();
+  const {showWarn} = useToast();
   const [feed, setFeed] = useState<ScheduleFeed>();
 
   useEffect(() => {
@@ -29,12 +28,12 @@ const Home: React.FC = () => {
 
       <Main>
         <Header>
-          <h1>Atendimentos</h1>
+          <h1>{formatMessage({id: "label.appointments"})}</h1>
           <Wrapper>
             <SearchField />
             <Button
-              onClick={(e) => { }}
-              idLabel="Novo Atendimento"
+              onClick={(e) =>  showWarn("AAAA", "AAAA")}
+              idLabel="label.newAppointment"
             >
               <PlusIcon />
             </Button>
