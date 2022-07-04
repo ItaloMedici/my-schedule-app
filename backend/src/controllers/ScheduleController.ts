@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import ScheduleService from "../services/ScheduleService";
+import { buildSheduleFeed } from "../util/scheduleBuilder";
 
 class ScheduleController {
 
@@ -16,13 +17,25 @@ class ScheduleController {
   static async getAll(req: Request, res: Response) {
     const { userId } = req;
     try {
-      console.log(req)
       const result = await ScheduleService.findAll(userId);
       
       return res.json(result);
 
     } catch (err) {
       res.status(404).json({ error: err.message })
+    }
+  }
+
+  static async buildFeed(req: Request, res: Response) {
+    const { userId } = req;
+    try {
+      const result = await ScheduleService.findAll(userId);
+      const feed = buildSheduleFeed(result)
+      
+      return res.json(feed);
+
+    } catch (err) {
+      res.status(500).json({ error: err.message })
     }
   }
 
@@ -35,7 +48,7 @@ class ScheduleController {
       return res.json(result);
 
     } catch (err) {
-      res.json({ error: err.message })
+      res.status(404).json({ error: err.message })
     }
   }
 
@@ -48,7 +61,7 @@ class ScheduleController {
       return res.json(result);
 
     } catch (err) {
-      res.json({ error: err.message })
+      res.status(404).json({ error: err.message })
     }
   }
 }
