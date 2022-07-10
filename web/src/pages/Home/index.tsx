@@ -6,20 +6,24 @@ import Navbar from '../../components/Navbar';
 
 import { useIntl } from 'react-intl';
 import Schedule from '../../components/Schedule';
+import { useToast } from '../../contexts/toast';
 import { ScheduleFeed } from '../../models/Feed';
 import { buildFeed } from '../../services/ScheduleService';
-import { DateLegend, Feed, Header, Main, Schedules, Wrapper } from './styles';
-import { useToast } from '../../contexts/toast';
+import { Header, Main, Wrapper } from './styles';
+import Feed from '../../components/Feed';
 
 const Home: React.FC = () => {
   const { formatMessage, formatDate } = useIntl();
-  const {showWarn} = useToast();
+  const {showWarn, showError} = useToast();
   const [feed, setFeed] = useState<ScheduleFeed>();
 
   useEffect(() => {
     buildFeed()
       .then(resp => setFeed(resp.data))
-      .catch(err => alert(err))
+      .catch(err => {
+        let {messageCode} = err?.response?.data;
+        showError(formatMessage({id: `errors.${messageCode}`}))
+      })
   }, []);
 
   return (
@@ -32,7 +36,7 @@ const Home: React.FC = () => {
           <Wrapper>
             <SearchField />
             <Button
-              onClick={(e) =>  showWarn("AAAA", "AAAA")}
+              onClick={(e) =>  showWarn("Erro ao abrir", "Conferir erro")}
               idLabel="label.newAppointment"
             >
               <PlusIcon />
@@ -45,38 +49,7 @@ const Home: React.FC = () => {
           </Wrapper>
         </Header>
         <SearchField />
-        {feed?.overdue && (
-          <Schedules>
-            <DateLegend>
-              <h4>{formatDate(feed.overdue.label, {
-                  day: '2-digit',
-                  month: '2-digit'
-              })}</h4>
-              <hr />
-            </DateLegend>
-            <Feed>
-              {feed.overdue.schedules.map(schedule => (
-                <Schedule data={schedule} overdue />
-              ))}
-            </Feed>
-        </Schedules>
-        )}
-        {feed?.avaliable.map(avaliables => (
-          <Schedules>
-            <DateLegend>
-              <h4>{formatDate(avaliables.label, {
-                  day: '2-digit',
-                  month: '2-digit'
-              })}</h4>
-              <hr />
-            </DateLegend>
-            <Feed>
-              {avaliables.schedules.map(schedule => (
-                <Schedule data={schedule}/>
-              ))}
-            </Feed>
-          </Schedules>
-        ))}
+        <Feed feed={feed} />
       </Main>
 
     </>
