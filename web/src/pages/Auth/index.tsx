@@ -73,7 +73,7 @@ const Auth: React.FC = () => {
           </Button>
         </form>
 
-        <Link to='/register'>{formatMessage({ id: "messages.signIn" })}</Link>
+        <Link to='/register'>{formatMessage({ id: "messages.signUp" })}</Link>
       </CardForm>
     </MainContainer>
   );
