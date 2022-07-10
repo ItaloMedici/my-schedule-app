@@ -1,7 +1,6 @@
 import { styled } from "../../theme/stitches.config";
 
-
-export const ButtonStyled = styled('button', {
+export const BaseButton = styled('button', {
   fontSize: '$md',
   borderRadius: '$md',
   height: 'fit-content',
@@ -25,6 +24,10 @@ export const ButtonStyled = styled('button', {
     width: '1.05rem',
   },
 
+})
+
+
+export const ButtonStyled = styled(BaseButton, {
   variants: {
     size: {
       xs: {
@@ -50,29 +53,29 @@ export const ButtonStyled = styled('button', {
     color: {
       primary: {
         background: '$primary',
-        
+
         '&:hover': {
           background: '$primaryDark',
         },
-      
+
         '&:focus, &:active': {
           boxShadow: '$primary'
         },
 
         '& label': {
-          color: '$backgrond',
+          color: '$background',
         },
 
         '& path': {
-          color: '$backgrond'
+          color: '$background'
         },
       },
       neutral: {
-        background: '$backgrond',
+        background: '$background',
         '&:hover': {
           background: '$gray2',
         },
-      
+
         '&:focus, &:active': {
           boxShadow: '$gray2'
         },

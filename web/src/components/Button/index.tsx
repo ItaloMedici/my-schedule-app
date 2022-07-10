@@ -10,7 +10,7 @@ type ButtonProps =
     iconLeft?: boolean,
     idLabel?: string,
     size?: "xs" | "sm" | "md" | "xl",
-    color?: "primary" | "neutral"
+    color?: "primary" | "neutral" | "error" | "success" | "warning"
   }
 
 const Button: React.FC<ButtonProps> = (
