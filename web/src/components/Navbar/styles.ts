@@ -7,7 +7,7 @@ export const Container = styled('nav', {
   height: 45,
   width: '100vw',
   zIndex: 1,
-  background: '$backgrond',
+  background: '$background',
 
   display: 'flex',
   alignItems: 'center',

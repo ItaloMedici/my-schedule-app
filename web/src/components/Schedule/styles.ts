@@ -32,7 +32,7 @@ export const Container = styled('a', {
       },
 
       false: {
-        background: '$backgrond',
+        background: '$background',
 
       }
     }

@@ -1,4 +1,4 @@
-import { gray, green, greenA, red, redA, redDark, sky, yellow } from "@radix-ui/colors";
+import { amber, amberA, amberDark, gray, green, greenA, greenDark, red, redA, redDark, sky, yellow, yellowA, yellowDark } from "@radix-ui/colors";
 import { createStitches } from "@stitches/react";
 
 export const {
@@ -17,20 +17,24 @@ export const {
       primaryA: 'hsla(13, 68%, 78%, .3)',
       primaryAA: 'hsla(13, 68%, 78%, .15)',
 
-      backgrond: '#FFF',
+      background: '#FFF',
 
       textColor: gray.gray12,
 
       error: red.red11,
       errorDark: redDark.red8,
       errorA: redA.redA3,
-      errorLight: red.red3,
+      errorLight: red.red2,
 
       success: green.green11,
+      successDark: greenDark.green8,
       successA: greenA.greenA3,
-      successLight: green.green3,
+      successLight: green.green2,
 
-      warning: yellow.yellow11,
+      warning: amber.amber11,
+      warningDark: amberDark.amber8,
+      warningA: amberA.amberA3,
+      warningLight: amber.amber2,
 
       info: sky.sky8,
 

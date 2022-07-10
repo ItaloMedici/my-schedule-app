@@ -9,7 +9,7 @@ export default globalCss({
 
   html: {
     minHeight: '100%',
-    background: '$backgrond',
+    background: '$background',
     overflow: 'hidden'
   },
 

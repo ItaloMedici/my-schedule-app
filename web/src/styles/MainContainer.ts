@@ -12,7 +12,7 @@ export const MainContainer = styled('div', {
 
   variants: {
     bg: {
-      primary: {background: '$backgrond'},
+      primary: {background: '$background'},
       secondary: {background: '$gray2'},
     }
   }

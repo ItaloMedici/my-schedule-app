@@ -16,7 +16,7 @@ export const Label = styled('label', {
 
 export const Input = styled('input', {
   width: '100%',
-  backgroundColor: '$backgrond',
+  backgroundColor: '$background',
   borderRadius: '$md',
   border: '1px solid $gray5',
 
