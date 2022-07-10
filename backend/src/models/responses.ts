@@ -19,5 +19,5 @@ export class ScheduleWeek {
 
 export class ScheduleFeed {
   avaliable: ScheduleWeek[] = []
-  overdue: ScheduleWeek = new ScheduleWeek();
+  overdue: ScheduleWeek[] = []
 }

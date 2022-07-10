@@ -1,4 +1,6 @@
 import { Request, Response } from "express";
+import { HttpError } from "http-errors";
+import { ErrorResponse } from "../models/error";
 import AuthUserService from "../services/AuthUserService";
 
 class AuthUserController {
@@ -11,8 +13,10 @@ class AuthUserController {
       return res.json(user)
 
     } catch (error) {
-      return res.json({ error: error.message })
-
+      return res.status(error.status).json(new ErrorResponse(
+        error.message,
+        error.status
+      ))
     }
   }
 
@@ -24,8 +28,10 @@ class AuthUserController {
       return res.json(user)
 
     } catch (error) {
-      return res.json({ error: error.message })
-
+      return res.status(error.status).json(new ErrorResponse(
+        error.message,
+        error.status
+      ))
     }
   }
 }

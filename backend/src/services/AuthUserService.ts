@@ -28,11 +28,11 @@ class AuthUserService {
       where: { email }
     })
 
-    if (!user) throw new NotFound("User not registered")
+    if (!user) throw new NotFound("wrongEmailPassword")
 
     const checkPassword = bcrypt.compareSync(password, user.password);
 
-    if (!checkPassword) throw new Unauthorized("Email address or password not valid")
+    if (!checkPassword) throw new Unauthorized("wrongEmailPassword")
 
     delete user.password
 
