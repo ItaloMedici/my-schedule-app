@@ -17,5 +17,5 @@ export interface ScheduleWeek {
 
 export interface ScheduleFeed {
   avaliable: ScheduleWeek[];
-  overdue: ScheduleWeek;
+  overdue: ScheduleWeek[];
 }
