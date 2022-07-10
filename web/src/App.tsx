@@ -10,11 +10,11 @@ function App() {
 
   return (
     <IntlProvider locale="pt-BR" defaultLocale="en" messages={messages}>
-      <AuthProvider>
-        <ToastProvider>
+      <ToastProvider>
+        <AuthProvider>
           <Routes />
-        </ToastProvider>
-      </AuthProvider>
+        </AuthProvider>
+      </ToastProvider>
     </IntlProvider>
   );
 }
