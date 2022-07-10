@@ -75,7 +75,7 @@ const handleRegister: React.FC = () => {
           </Button>
         </form>
 
-        <Link to='/auth'>{formatMessage({id: "messages.signUp"})}</Link>
+        <Link to='/auth'>{formatMessage({id: "messages.signIn"})}</Link>
       </CardForm>
     </MainContainer>
   );
