@@ -1,7 +1,11 @@
+import axios from 'axios';
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
+import { ErrorResponse } from '../models/ErrorResponse';
 import { User } from '../models/User';
 import { authenticate } from '../services/AuthService';
+import { useToast } from './toast';
 
 // import { Container } from './styles';
 
@@ -21,6 +25,8 @@ export const useAuth = () => {
 export const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const navigate = useNavigate();
+  const { showError } = useToast();
+  const { formatMessage } = useIntl();
 
   useEffect(() => {
     const user = localStorage.getItem("user");
@@ -31,18 +37,20 @@ export const AuthProvider: React.FC = ({ children }) => {
     }
   }, [])
 
-  const signIn = async ({email, password}: User) => {
-    try {
-      const resp = await authenticate({ email, password });
-      setUser(resp.data);
-      
-      localStorage.setItem("token", resp.data.token);
-      localStorage.setItem("user", JSON.stringify(resp.data));
+  const signIn = async ({ email, password }: User) => {
+    await authenticate({ email, password })
+      .then(resp => {
+        setUser(resp.data);
 
-      navigate('/home', {replace: true});
-    } catch (err) {
-      console.log("erroo:", err)
-    }
+        localStorage.setItem("token", resp.data.token);
+        localStorage.setItem("user", JSON.stringify(resp.data));
+
+        navigate('/home', { replace: true });
+      })
+      .catch(err => {
+        let {messageCode} = err?.response?.data;
+        showError(formatMessage({id: `errors.${messageCode}`}))
+      });
   }
 
   const signOut = () => {
@@ -51,11 +59,11 @@ export const AuthProvider: React.FC = ({ children }) => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
 
-    navigate('/login', {replace: true})
+    navigate('/login', { replace: true })
   }
 
   return (
-    <AuthContext.Provider value={{signed: !!user, user, signIn, signOut }}>
+    <AuthContext.Provider value={{ signed: !!user, user, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );
