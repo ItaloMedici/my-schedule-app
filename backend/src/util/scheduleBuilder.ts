@@ -5,21 +5,19 @@ export const buildSheduleFeed = (data: ScheduleRes[]) => {
 
   if (data) {
     data.forEach(schedule => {
-      if (schedule.appointment.getTime() < new Date().getTime() && !schedule.finished) {
-        feed.overdue.schedules.push(schedule)
-      } else {
-        let indexSameDay = feed.avaliable.findIndex(s => 
-          isSameDay(s.label, schedule.appointment)
-        )
+      let list = isOverdue(schedule) ? 'overdue' : 'avaliable'
 
-        if (indexSameDay !== -1) {
-          feed.avaliable[indexSameDay].schedules.push(schedule)
-        } else {
-          let aux = new ScheduleWeek();
-          aux.label = schedule.appointment;
-          aux.schedules.push(schedule)
-          feed.avaliable.push(aux)
-        }
+      let indexSameDay = feed[list].findIndex(s =>
+        isSameDay(s.label, schedule.appointment)
+      )
+
+      if (indexSameDay !== -1) {
+        feed[list][indexSameDay].schedules.push(schedule)
+      } else {
+        let aux = new ScheduleWeek();
+        aux.label = schedule.appointment;
+        aux.schedules.push(schedule)
+        feed[list].push(aux)
       }
     })
   }
@@ -32,4 +30,8 @@ const isSameDay = (date1: Date, date2: Date = new Date()) => {
   date2.setHours(0, 0, 0, 0);
 
   return date1.getTime() === date2.getTime();
+}
+
+const isOverdue = (schedule: ScheduleRes) => {
+  return (schedule.appointment.getTime() < new Date().getTime() && !schedule.finished)
 }
