@@ -1,33 +1,35 @@
-import { ToastStyled, ToastAction, ToastDescription, ToastProvider, ToastTitle, ToastViewport } from './styles';
-import React, { useState } from 'react';
-import { Button } from '../Button';
 import { Cross2Icon } from '@radix-ui/react-icons';
+import React from 'react';
+import { ToastAction, ToastCloseButton, ToastDescription, ToastProvider, ToastStyled, ToastTitle, ToastViewport } from './styles';
 
-type ToastType ={
+type ToastType = {
   onOpenChange: (open: boolean) => void,
   open: boolean,
   title: string,
   message?: string
+  state?: "primary" | "success" | "error" | "warning"
 }
 
-const Toast: React.FC<ToastType> = ({onOpenChange, open, title, message }) => {
-  console.log(title, message)
+const Toast: React.FC<ToastType> = ({ onOpenChange, open, title, message, state }) => {
+
   return (
     <ToastProvider swipeDirection="right">
-    
-    <ToastStyled 
-      open={open} 
-      onOpenChange={onOpenChange}
-      state={'error'}
-    >
-        <ToastTitle>{title}</ToastTitle>
-        <ToastDescription>
+
+      <ToastStyled
+        open={open}
+        onOpenChange={onOpenChange}
+        state={state}
+      >
+        <ToastTitle state={state}>{title}</ToastTitle>
+        {message && <ToastDescription state={state}>
           {message}
-        </ToastDescription>
+        </ToastDescription>}
         <ToastAction asChild altText="Close">
-          <Button size='xs' color='neutral'>
+          <ToastCloseButton
+            color={state}
+          >
             <Cross2Icon />
-          </Button>
+          </ToastCloseButton>
         </ToastAction>
       </ToastStyled>
       <ToastViewport />
