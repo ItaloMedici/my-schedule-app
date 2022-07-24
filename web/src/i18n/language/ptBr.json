@@ -16,10 +16,12 @@
     "save": "Salvar",
     "delete": "Excluir",
     "description": "Descrição",
-    "price":"Preço",
+    "price": "Preço",
     "date": "Data",
     "time": "Horário",
-    "customer": "Cliente"
+    "customer": "Cliente",
+    "finishedAppointment": "Atendimento Finalizado",
+    "observation": "Observação"
   },
   "messages": {
     "signUp": "Não possui uma conta? Registre-se.",

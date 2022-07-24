@@ -14,7 +14,14 @@
     "goBack": "Go Back",
     "edit": "Edit",
     "save": "Save",
-    "delete": "Delte"
+    "delete": "Delete",
+    "description": "Description",
+    "price":"Price",
+    "date": "Date",
+    "time": "Time",
+    "customer": "Customer",
+    "finishedAppointment": "Finished appointment",
+    "observation": "observation",
   },
   "messages": {
     "signUp": "Don't have an account? Sign up.",

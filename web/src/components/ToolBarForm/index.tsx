@@ -27,7 +27,7 @@ export const ToolBarForm: React.FC<ToolBarType> = ({ allowEdit, onDelete, onEdit
         <>
           <Button
             color='success'
-            idLabel='Salvar'
+            idLabel='label.save'
             iconLeft
             style={{ marginLeft: 'auto' }}
             onClick={onSave}
@@ -49,7 +49,7 @@ export const ToolBarForm: React.FC<ToolBarType> = ({ allowEdit, onDelete, onEdit
         <>
           <Button
             color='neutral'
-            idLabel='Editar'
+            idLabel='label.edit'
             iconLeft
             style={{ marginLeft: 'auto' }}
             onClick={onEdit}
