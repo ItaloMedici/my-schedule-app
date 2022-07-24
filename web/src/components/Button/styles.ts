@@ -15,6 +15,7 @@ export const BaseButton = styled('button', {
   outline: 'none',
 
   '& label': {
+    cursor: 'pointer',
     fontSize: '$sm',
     flex: 1,
   },
@@ -81,13 +82,49 @@ export const ButtonStyled = styled(BaseButton, {
         },
 
         '& label': {
-          color: '$gray4',
+          color: '$textColor',
         },
 
         '& svg': {
-          color: '$gray4',
+          color: '$background',
         }
       },
+      success: {
+        background: '$success',
+        '&:hover': {
+          background: '$successDark',
+        },
+
+        '&:active, &:focus': {
+          boxShadow: '$success'
+        },
+
+        '& label': {
+          color: '$background',
+        },
+
+        '& svg path': {
+          color: '$background',
+        }
+      },
+      error: {
+        background: '$error',
+        '&:hover': {
+          background: '$errorDark',
+        },
+
+        '&:active, &:focus': {
+          boxShadow: '$error'
+        },
+
+        '& label': {
+          color: '$background',
+        },
+
+        '& svg path': {
+          color: '$background',
+        }
+      }
     }
   },
 
