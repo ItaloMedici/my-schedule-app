@@ -21,13 +21,17 @@
     "time": "Horário",
     "customer": "Cliente",
     "finishedAppointment": "Atendimento Finalizado",
-    "observation": "Observação"
+    "observation": "Observação",
+    "yesDeleteRecord": "Sim, deletar registro",
+    "cancel": "Cancelar"
   },
   "messages": {
     "signUp": "Não possui uma conta? Registre-se.",
     "signIn": "Possui uma conta? Entre.",
     "successfullyRegistered": "Cadastro realizado com sucesso!",
-    "noAppointmentFound": "Nenhum atendimento encontrado!"
+    "noAppointmentFound": "Nenhum atendimento encontrado!",
+    "deleteDialogTitle": "Deseja deletar este registro?",
+    "deleteDialogContent": "Essa ação não poderá ser desfeita. Isto irá deletar permanentemente este registro."
   },
   "errors": {
     "wrongEmailPassword": "Email ou senha incorretos",

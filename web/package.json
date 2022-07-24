@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@radix-ui/colors": "^0.1.8",
+    "@radix-ui/react-alert-dialog": "^1.0.0",
     "@radix-ui/react-checkbox": "^1.0.0",
     "@radix-ui/react-collapsible": "^0.1.6",
     "@radix-ui/react-icons": "^1.1.1",
@@ -20,7 +21,7 @@
     "@stitches/react": "^1.2.8",
     "@types/react-router-dom": "^5.3.3",
     "axios": "^0.26.0",
-    "react": "^18.2.0",
+    "react": "^17.0",
     "react-dom": "^17.0.2",
     "react-intl": "^6.0.4",
     "react-router-dom": "^6.2.1",

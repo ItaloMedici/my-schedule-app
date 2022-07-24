@@ -22,12 +22,16 @@
     "customer": "Customer",
     "finishedAppointment": "Finished appointment",
     "observation": "observation",
+    "yesDeleteRecord": "yes, delete record",
+    "cancel": "Cancel"
   },
   "messages": {
     "signUp": "Don't have an account? Sign up.",
     "signIn": "Already has an account? Sign In.",
     "successfullyRegistered": "Successfully registered",
-    "noAppointmentFound": "No appointment found!"
+    "noAppointmentFound": "No appointment found!",
+    "deleteDialogTitle": "Are you absolutely sure?",
+    "deleteDialogContent": "This action cannot be undone. This will permanently delete this record"
   },
   "errors": {
     "wrongEmailPassword": "Incorrect email or password",
