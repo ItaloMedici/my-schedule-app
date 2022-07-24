@@ -10,7 +10,11 @@
     "search": "Search",
     "exit": "Exit",
     "appointments": "Appointments",
-    "newAppointment": "New Appointment"
+    "newAppointment": "New Appointment",
+    "goBack": "Go Back",
+    "edit": "Edit",
+    "save": "Save",
+    "delete": "Delte"
   },
   "messages": {
     "signUp": "Don't have an account? Sign up.",

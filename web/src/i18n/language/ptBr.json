@@ -10,7 +10,11 @@
     "search": "Buscar",
     "exit": "Sair",
     "appointments": "Atendimentos",
-    "newAppointment": "Novo Atendimento"
+    "newAppointment": "Novo Atendimento",
+    "goBack": "Voltar",
+    "edit": "Editar",
+    "save": "Salvar",
+    "delete": "Excluir"
   },
   "messages": {
     "signUp": "Não possui uma conta? Registre-se.",
