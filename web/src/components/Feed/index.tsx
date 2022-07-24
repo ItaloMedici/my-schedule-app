@@ -8,7 +8,7 @@ import { buildFeed } from '../../services/ScheduleService';
 import { Button } from '../Button';
 import { ScheduleCard } from '../ScheduleCard';
 
-import { DateLegend, Schedules, FeedStyle, EmptyFeed } from './styles';
+import { DateLegend, Schedules, FeedStyle, EmptyFeed, SkeletonFeed } from './styles';
 
 const Feed: React.FC = () => {
   const { showWarn, showError } = useToast();
@@ -25,9 +25,13 @@ const Feed: React.FC = () => {
         setFeed(response.data);
       } catch (err: any) {
         setLoading(false)
-        let { messageCode } = err?.response?.data;
-        messageCode &&
-          showError(formatMessage({ id: `errors.${messageCode}` }))
+        let messageCode = "errorLoadingFeed";
+
+        if (err?.response?.data) {
+          messageCode = err.response.data.messageCode;
+        }
+
+        showError(formatMessage({ id: `errors.${messageCode}` }))
       } finally {
         setLoading(false)
       }
@@ -74,7 +78,7 @@ const Feed: React.FC = () => {
         : <EmptyFeed>{formatMessage({ id: "messages.noAppointmentFound" })}</EmptyFeed>
       }
     </>
-  ) : <></>;
+  ) : <SkeletonFeed />;
 }
 
 export default Feed;

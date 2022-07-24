@@ -1,3 +1,4 @@
+import { keyframes } from "@stitches/react"
 import { styled } from "../../theme/stitches.config"
 
 
@@ -63,4 +64,17 @@ export const EmptyFeed = styled('div', {
   borderRadius: '$lg',
   opacity: .8,
   color: '$textColor'
+})
+
+const skeleton = keyframes({
+  '0%': { backgroundColor: '$gray7' },
+  '50%': { backgroundColor: '$gray6' },
+  '100%': { backgroundColor: '$gray4' },
+})
+
+export const SkeletonFeed = styled('div', {
+  width: '100%',
+  padding: '$12',
+  borderRadius: '$lg',
+  animation: `${skeleton} 500ms linear infinite alternate;`,
 })

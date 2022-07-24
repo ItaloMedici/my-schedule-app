@@ -29,6 +29,7 @@
   },
   "errors": {
     "wrongEmailPassword": "Email ou senha incorretos",
-    "emailAlreadyUsed": "Email já utilizado!"
+    "emailAlreadyUsed": "Email já utilizado!",
+    "errorLoadingFeed": "Ocorreu um erro ao carregar o feed!"
   }
 }
