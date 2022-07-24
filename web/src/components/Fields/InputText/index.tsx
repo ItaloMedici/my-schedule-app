@@ -10,11 +10,12 @@ export type TextFieldProps = {
   size?: "xs" | "sm" | "md" | "xl"
   idPlaceholder?: string;
   invalid?: boolean
+  disabled?: boolean
 }
 
 
 const InputText: React.FC<TextFieldProps> = (
-  { idLabel, value, onChange, name, children, idPlaceholder, size, type = "text", invalid }
+  { idLabel, value, onChange, name, children, idPlaceholder, size, type = "text", invalid, disabled }
 ) => {
   const { formatMessage } = useIntl();
   return (
@@ -30,6 +31,7 @@ const InputText: React.FC<TextFieldProps> = (
         name={name}
         placeholder={idPlaceholder && formatMessage({ id: idPlaceholder })}
         invalid={invalid}
+        disabled={disabled}
       />
       {children}
     </Container>
