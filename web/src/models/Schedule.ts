@@ -1,7 +1,7 @@
 import { Client } from "./Client";
 import { User } from "./User";
 
-export interface Schedule {
+export interface ISchedule {
   id: number;
   description: string;
   observation?: string;
@@ -10,4 +10,17 @@ export interface Schedule {
   finished: boolean;
   user: User,
   client: Client
+}
+
+export class Schedule implements ISchedule {
+  id: number;
+  description: string;
+  observation?: string | undefined;
+  price?: number | undefined;
+  appointment: Date;
+  finished: boolean;
+  user: User;
+  client: Client;
+
+  
 }
