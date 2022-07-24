@@ -26,7 +26,7 @@ export const {
       errorA: redA.redA3,
       errorLight: red.red2,
 
-      success: green.green11,
+      success: green.green9,
       successDark: greenDark.green8,
       successA: greenA.greenA3,
       successLight: green.green2,
@@ -49,6 +49,7 @@ export const {
       primary: '0 0 0 0.2rem $colors$primaryA',
       error: '0 0 0 0.2rem $colors$errorA',
       gray: '0 0 0 0.2rem $colors$gray3',
+      success: '0 0 0 0.2rem $colors$successA',
       elevation: '0 .3rem .5rem 0 $colors$gray4'
     },
 
