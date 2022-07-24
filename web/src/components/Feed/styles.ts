@@ -1,4 +1,5 @@
-import { styled } from "@stitches/react"
+import { styled } from "../../theme/stitches.config"
+
 
 export const Schedules = styled('div', {
   display: 'flex',
@@ -51,4 +52,15 @@ export const FeedStyle = styled('div', {
   '@media (max-width: 830px)': {
     gridTemplateColumns: '1fr'
   },
+})
+
+export const EmptyFeed = styled('div', {
+  width: '100%',
+  padding: '$10',
+  backgroundColor: '$gray3',
+  textAlign: 'center',
+  border: '3px dashed $gray7',
+  borderRadius: '$lg',
+  opacity: .8,
+  color: '$textColor'
 })
