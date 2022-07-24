@@ -15,7 +15,8 @@
   "messages": {
     "signUp": "Não possui uma conta? Registre-se.",
     "signIn": "Possui uma conta? Entre.",
-    "successfullyRegistered": "Cadastro realizado com sucesso!"
+    "successfullyRegistered": "Cadastro realizado com sucesso!",
+    "noAppointmentFound": "Nenhum atendimento encontrado!"
   },
   "errors": {
     "wrongEmailPassword": "Email ou senha incorretos",

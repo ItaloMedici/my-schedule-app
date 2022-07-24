@@ -4,7 +4,6 @@ import { AuthRoutes } from './auth.routes';
 
 const Routes = () => {
   const { signed } = useAuth();
-  console.debug("LOGADO", signed)
   return signed ? <AppRoutes /> : <AuthRoutes />
 }
 

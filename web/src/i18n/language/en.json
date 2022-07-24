@@ -15,7 +15,8 @@
   "messages": {
     "signUp": "Don't have an account? Sign up.",
     "signIn": "Already has an account? Sign In.",
-    "successfullyRegistered": "Successfully registered"
+    "successfullyRegistered": "Successfully registered",
+    "noAppointmentFound": "No appointment found!"
   },
   "errors": {
     "wrongEmailPassword": "Incorrect email or password",
