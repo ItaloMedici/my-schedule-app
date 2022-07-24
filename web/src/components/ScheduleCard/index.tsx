@@ -2,21 +2,27 @@ import { gray } from '@radix-ui/colors';
 import { DividerVerticalIcon } from '@radix-ui/react-icons';
 import React from 'react';
 import { useIntl } from 'react-intl';
+import { useNavigate } from 'react-router-dom';
 import { ScheduleRes } from '../../models/Feed';
 
 import { Container, Time, Name, Info, Header } from './styles';
 
-type ScheduleType = { 
-  data: ScheduleRes, 
-  overdue?: boolean
+type ScheduleType = {
+  data: ScheduleRes,
+  overdue?: boolean,
 }
 
-const Schedule: React.FC<ScheduleType> = ({ data, overdue }) => {
+const ScheduleCard: React.FC<ScheduleType> = ({ data, overdue }) => {
+  const navigate = useNavigate()
   const { formatTime, formatNumber } = useIntl();
   const state = (data.finished && 'finished') || (overdue && 'overdue') || 'primary';
-  
+
+  const openSchedule = () => {
+    navigate('/atendimento/' + data.id);
+  }
+
   return (
-    <Container finalized={data.finished}>
+    <Container finalized={data.finished} onClick={openSchedule} >
       <Header>
         <Time state={state}>
           <h1>{formatTime(data.appointment)}</h1>
@@ -26,7 +32,7 @@ const Schedule: React.FC<ScheduleType> = ({ data, overdue }) => {
         </Name>
       </Header>
       <Info>
-        {data?.description && 
+        {data?.description &&
           <p>{data.description}</p>
         }
         {data?.price &&
@@ -47,4 +53,4 @@ const Schedule: React.FC<ScheduleType> = ({ data, overdue }) => {
   );
 }
 
-export default Schedule;
+export { ScheduleCard };
