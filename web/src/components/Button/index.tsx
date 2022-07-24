@@ -10,11 +10,12 @@ type ButtonProps =
     iconLeft?: boolean,
     idLabel?: string,
     size?: "xs" | "sm" | "md" | "xl",
-    color?: "primary" | "neutral" | "error" | "success" | "warning"
+    color?: "primary" | "neutral" | "error" | "success" | "warning",
+    disabled?: boolean,
   }
 
 const Button: React.FC<ButtonProps> = (
-  { children, onClick, iconLeft = false, idLabel, size, color, ...rest }
+  { children, onClick, iconLeft = false, idLabel, size, color, disabled, ...rest }
 ) => {
   const { formatMessage } = useIntl();
   return (
@@ -22,6 +23,7 @@ const Button: React.FC<ButtonProps> = (
       onClick={onClick}
       size={size}
       color={color}
+      disabled={disabled}
       {...rest}
     >
       {iconLeft && children}

@@ -25,6 +25,10 @@ export const BaseButton = styled('button', {
     width: '1.05rem',
   },
 
+  '&:disabled': {
+    opacity: .5,
+    pointerEvents: 'none',
+  }
 })
 
 
