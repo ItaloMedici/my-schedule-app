@@ -2,7 +2,7 @@ import { Client } from "./Client";
 import { User } from "./User";
 
 export interface ISchedule {
-  id: number;
+  id: string;
   description: string;
   observation?: string;
   price?: number;
@@ -13,7 +13,7 @@ export interface ISchedule {
 }
 
 export class Schedule implements ISchedule {
-  id: number;
+  id: string;
   description: string;
   observation?: string | undefined;
   price?: number | undefined;
