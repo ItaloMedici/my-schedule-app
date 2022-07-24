@@ -20,7 +20,7 @@ const ScheduleCard: React.FC<ScheduleType> = ({ data, overdue }) => {
   const openSchedule = () => {
     navigate('/atendimento/' + data.id);
   }
-
+  
   return (
     <Container finalized={data.finished} onClick={openSchedule} >
       <Header>

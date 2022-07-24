@@ -14,7 +14,12 @@
     "goBack": "Voltar",
     "edit": "Editar",
     "save": "Salvar",
-    "delete": "Excluir"
+    "delete": "Excluir",
+    "description": "Descrição",
+    "price":"Preço",
+    "date": "Data",
+    "time": "Horário",
+    "customer": "Cliente"
   },
   "messages": {
     "signUp": "Não possui uma conta? Registre-se.",
