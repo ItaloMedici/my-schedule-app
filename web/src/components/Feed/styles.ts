@@ -42,15 +42,13 @@ export const FeedStyle = styled('div', {
   flex: 1,
   display: 'grid',
   gap: '$4',
-  '@bp0': {
-    gridTemplateColumns: '1fr 1fr 1fr',
-  },
+  gridTemplateColumns: '1fr 1fr 1fr',
 
-  '@bp1': {
+  '@media (max-width: 1200px)': {
     gridTemplateColumns: '1fr 1fr',
   },
     
-  '@bp3': {
+  '@media (max-width: 830px)': {
     gridTemplateColumns: '1fr'
   },
 })

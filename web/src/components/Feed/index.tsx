@@ -1,6 +1,9 @@
+import * as Collapsible from '@radix-ui/react-collapsible';
+import { EyeClosedIcon } from '@radix-ui/react-icons';
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { ScheduleFeed } from '../../models/Feed';
+import { Button } from '../Button';
 import Schedule from '../Schedule';
 
 import { DateLegend, Schedules, FeedStyle } from './styles';
@@ -14,22 +17,22 @@ const Feed: React.FC<FeedProps> = ({ feed }) => {
 
   return (
     <>
-      {feed?.overdue && feed?.overdue.map(overdue => (
-        <Schedules>
-          <DateLegend>
-            <h4>{formatDate(overdue.label, {
-              day: '2-digit',
-              month: '2-digit'
-            })}</h4>
-            <hr />
-          </DateLegend>
-          <FeedStyle>
-            {overdue.schedules.map(schedule => (
-              <Schedule data={schedule} overdue />
-            ))}
-          </FeedStyle>
-        </Schedules>
-      ))}
+        {feed?.overdue && feed?.overdue.map((overdue, i) => (
+          <Schedules key={i}>
+            <DateLegend>
+              <h4>{formatDate(overdue.label, {
+                day: '2-digit',
+                month: '2-digit'
+              })}</h4>
+              <hr />
+            </DateLegend>
+              <FeedStyle>
+                {overdue.schedules.map((schedule, i) => (
+                  <Schedule key={i} data={schedule} overdue />
+                ))}
+              </FeedStyle>
+          </Schedules>
+        ))}
       {feed?.avaliable.map(avaliables => (
         <Schedules>
           <DateLegend>
