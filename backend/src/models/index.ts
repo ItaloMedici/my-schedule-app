@@ -8,11 +8,13 @@ export interface User {
 };
 
 export interface Schedule {
+  id?: string;
   description: string;
   observation?: string;
   price?: number;
   appointment: Date;
   clientId?: never;
+  finished?: boolean;
 }
 
 export interface Client {

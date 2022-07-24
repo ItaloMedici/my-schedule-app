@@ -3,34 +3,64 @@ import prismaClient from "../prisma";
 import { NotFound } from "http-errors"
 
 class ScheduleService {
-  static async create(scheduleInfo: Schedule, userId: string) {
+  static async createOrUpdate(scheduleInfo: Schedule, userId: string) {
 
     const {
+      id,
       description,
       observation,
       price,
       appointment,
+      finished,
       clientId } = scheduleInfo;
 
     const schedule = clientId
-      ? await prismaClient.schedule.create({
-        data: {
+      ? await prismaClient.schedule.upsert({
+        create: {
           description,
           observation,
           price,
           appointment,
+          finished,
           client: { connect: { id: clientId } },
           user: { connect: { id: userId } }
+        },
+        where: {
+          id
+        },
+        update: {
+          description,
+          observation,
+          price,
+          appointment,
+          finished,
+          client: { connect: { id: clientId } },
+          user: { connect: { id: userId } },
         },
         include: {
           user: true,
           client: true
         }
       })
-      : await prismaClient.schedule.create({
-        data: {
-          ...scheduleInfo,
+      :  await prismaClient.schedule.upsert({
+        create: {
+          description,
+          observation,
+          price,
+          appointment,
+          finished,
           user: { connect: { id: userId } }
+        },
+        where: {
+          id
+        },
+        update: {
+          description,
+          observation,
+          price,
+          appointment,
+          finished,
+          user: { connect: { id: userId } },
         },
         include: {
           user: true,

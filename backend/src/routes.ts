@@ -20,7 +20,7 @@ router.delete("/user/:id", ensureAuth, UserController.delete);
 /**
  * Schedule Routes
  */
-router.post("/schedule", ensureAuth, ScheduleController.create);
+router.post("/schedule", ensureAuth, ScheduleController.createOrUpdate);
 router.get("/schedules", ensureAuth, ScheduleController.getAll);
 router.get("/build-feed", ensureAuth, ScheduleController.buildFeed);
 router.get("/schedule/:id", ensureAuth, ScheduleController.get);

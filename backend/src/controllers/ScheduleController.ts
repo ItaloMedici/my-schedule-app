@@ -4,11 +4,11 @@ import { buildSheduleFeed } from "../util/scheduleBuilder";
 
 class ScheduleController {
 
-  static async create(req: Request, res: Response) {
+  static async createOrUpdate(req: Request, res: Response) {
     const schedule = req.body;
     const { userId } = req;
 
-    const result = await ScheduleService.create(schedule, userId);
+    const result = await ScheduleService.createOrUpdate(schedule, userId);
 
     return res.json(result)
     
