@@ -1,5 +1,3 @@
-import { violet, blackA } from '@radix-ui/colors';
-import { CheckIcon } from '@radix-ui/react-icons';
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 import { styled } from '../../theme/stitches.config';
 import { LabelBase } from '../Fields/Base';
