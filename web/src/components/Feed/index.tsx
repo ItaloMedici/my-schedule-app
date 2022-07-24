@@ -1,21 +1,40 @@
 import * as Collapsible from '@radix-ui/react-collapsible';
 import { EyeClosedIcon } from '@radix-ui/react-icons';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
+import { useToast } from '../../contexts/toast';
 import { ScheduleFeed } from '../../models/Feed';
+import { buildFeed } from '../../services/ScheduleService';
 import { Button } from '../Button';
-import Schedule from '../Schedule';
+import { ScheduleCard } from '../ScheduleCard';
 
 import { DateLegend, Schedules, FeedStyle, EmptyFeed } from './styles';
 
-type FeedProps = {
-  feed?: ScheduleFeed
-}
-
-const Feed: React.FC<FeedProps> = ({ feed }) => {
+const Feed: React.FC = () => {
+  const { showWarn, showError } = useToast();
   const { formatMessage, formatDate } = useIntl();
+  const [feed, setFeed] = useState<ScheduleFeed>();
+  const [isLoading, setLoading] = useState(false);
 
-  return (
+  useEffect(() => {
+    (async () => {
+      try {
+        setLoading(true)
+
+        const response = await buildFeed();
+        setFeed(response.data);
+      } catch (err: any) {
+        setLoading(false)
+        let { messageCode } = err?.response?.data;
+        messageCode &&
+          showError(formatMessage({ id: `errors.${messageCode}` }))
+      } finally {
+        setLoading(false)
+      }
+    })()
+  }, []);
+
+  return !isLoading ? (
     <>
       {feed?.overdue || feed?.avaliable ?
         <>
@@ -30,35 +49,32 @@ const Feed: React.FC<FeedProps> = ({ feed }) => {
               </DateLegend>
               <FeedStyle>
                 {overdue.schedules.map((schedule, i) => (
-                  <Schedule key={i} data={schedule} overdue />
+                  <ScheduleCard key={i} data={schedule} overdue />
                 ))}
               </FeedStyle>
             </Schedules>
           ))}
-          {feed?.avaliable.map(avaliables => (
-            <Schedules>
-              <DateLegend>
-                <h4>{formatDate(avaliables.label, {
+          {feed?.avaliable.map((avaliables, i) => (
+            <Schedules key={i}>
+              <DateLegend key={i}>
+                <h4 key={i}>{formatDate(avaliables.label, {
                   day: '2-digit',
                   month: '2-digit'
                 })}</h4>
                 <hr />
               </DateLegend>
-              <FeedStyle>
-                {avaliables.schedules.map(schedule => (
-                  <Schedule data={schedule} />
+              <FeedStyle key={i}>
+                {avaliables.schedules.map((schedule, i) => (
+                  <ScheduleCard data={schedule} key={i} />
                 ))}
               </FeedStyle>
             </Schedules>
           ))}
-        </> 
-        :
-        <>
-          <EmptyFeed>No schedules found!</EmptyFeed>
         </>
+        : <EmptyFeed>{formatMessage({ id: "messages.noAppointmentFound" })}</EmptyFeed>
       }
     </>
-  );
+  ) : <></>;
 }
 
 export default Feed;
