@@ -22,5 +22,12 @@ export class Schedule implements ISchedule {
   user: User;
   client: Client;
 
-  
+  constructor(user?: User | null) {
+    this.finished = false;
+    this.price = 0;
+    if (user) {
+      this.user = user;
+    }
+    this.appointment = new Date();
+  }
 }
