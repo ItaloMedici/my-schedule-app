@@ -9,12 +9,13 @@ import { Toolbar, ToolbarLink } from './styles';
 
 type ToolBarType = {
   allowEdit?: boolean,
+  allowDelete?: boolean,
   onSave?: () => void,
   onDelete?: () => void,
   onEdit?: () => void
 }
 
-export const ToolBarForm: React.FC<ToolBarType> = ({ allowEdit, onDelete, onEdit, onSave }) => {
+export const ToolBarForm: React.FC<ToolBarType> = ({ allowEdit, allowDelete, onDelete, onEdit, onSave }) => {
   const { formatMessage } = useIntl();
 
   return (
@@ -41,6 +42,7 @@ export const ToolBarForm: React.FC<ToolBarType> = ({ allowEdit, onDelete, onEdit
             onClick={onDelete}
             aria-label={formatMessage({id: 'label.delete'})}
             title={formatMessage({id: 'label.delete'})}
+            disabled={!allowDelete}
           >
             <TrashIcon />
           </Button>
