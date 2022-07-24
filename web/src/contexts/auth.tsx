@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 import { useNavigate } from 'react-router-dom';
 import { ErrorResponse } from '../models/ErrorResponse';
 import { User } from '../models/User';
-import { authenticate } from '../services/AuthService';
+import { authenticate, register } from '../services/AuthService';
 import { useToast } from './toast';
 
 // import { Container } from './styles';
@@ -13,7 +13,8 @@ type AuthContextData = {
   signed: boolean,
   user: User | null,
   signIn: (userData: User) => Promise<void>,
-  signOut: () => void
+  signOut: () => void,
+  signUp: (userData: User) => Promise<void>
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -25,7 +26,7 @@ export const useAuth = () => {
 export const AuthProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const navigate = useNavigate();
-  const { showError } = useToast();
+  const { showError, showSuccess } = useToast();
   const { formatMessage } = useIntl();
 
   useEffect(() => {
@@ -62,8 +63,20 @@ export const AuthProvider: React.FC = ({ children }) => {
     navigate('/login', { replace: true })
   }
 
+  const signUp = async ({ email, password, name }: User) => {
+    await register({ email, password, name })
+      .then(res => {  
+        navigate('/home', { replace: true });
+        showSuccess(formatMessage({id: "messages.successfullyRegistered"}))
+      })
+      .catch(err => {
+        let {messageCode} = err?.response?.data;
+        showError(formatMessage({id: `errors.${messageCode}`}))
+      })
+  }
+
   return (
-    <AuthContext.Provider value={{ signed: !!user, user, signIn, signOut }}>
+    <AuthContext.Provider value={{ signed: !!user, user, signIn, signOut, signUp }}>
       {children}
     </AuthContext.Provider>
   );

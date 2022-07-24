@@ -14,9 +14,11 @@
   },
   "messages": {
     "signUp": "Não possui uma conta? Registre-se.",
-    "signIn": "Possui uma conta? Entre."
+    "signIn": "Possui uma conta? Entre.",
+    "successfullyRegistered": "Cadastro realizado com sucesso!"
   },
   "errors": {
-    "wrongEmailPassword": "Email ou senha incorretos"
+    "wrongEmailPassword": "Email ou senha incorretos",
+    "emailAlreadyUsed": "Email já utilizado!"
   }
 }

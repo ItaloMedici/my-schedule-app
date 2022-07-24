@@ -6,12 +6,17 @@ import { Button } from '../../components/Button';
 import InputPassword from '../../components/Fields/InputPassword';
 import { InputText } from '../../components/Fields/InputText';
 import { CardForm } from '../../components/Form/CardForm';
+import { useAuth } from '../../contexts/auth';
+import { useToast } from '../../contexts/toast';
 import { User } from '../../models/User';
 import { register } from '../../services/AuthService';
 import { MainContainer } from '../../styles/MainContainer';
 
 const handleRegister: React.FC = () => {
+  const [invalid, setInvalid] = useState(false);
+  const { signUp } = useAuth();
   const {formatMessage} = useIntl();
+
   const [values, setValues] = useState<User>({
     email: "",
     name: "",
@@ -23,19 +28,18 @@ const handleRegister: React.FC = () => {
       ...values,
       [e.target.name]: e.target.value
     })
+    setInvalid(false)
   }
 
   const handleRegister = (e: any) => {
     e.preventDefault();
 
     const { email, password, name } = values;
-    register({ email, password, name })
-      .then(res => {  
-        
-      })
-      .catch(err => {
-
-      })
+    if (email && password && name) {
+      signUp(values)
+    } else {
+      setInvalid(true)
+    }
   }
 
   return (
@@ -50,6 +54,7 @@ const handleRegister: React.FC = () => {
             value={values.email}
             name="email"
             size='md'
+            invalid={invalid}
           />
           <InputText
             idLabel='label.user'
@@ -57,6 +62,7 @@ const handleRegister: React.FC = () => {
             value={values.name}
             name="name"
             size='md'
+            invalid={invalid}
           />
           <InputPassword
             idLabel='label.password'
@@ -64,6 +70,7 @@ const handleRegister: React.FC = () => {
             value={values.password}
             name="password"
             size='md'
+            invalid={invalid}
           />
 
           <Button
