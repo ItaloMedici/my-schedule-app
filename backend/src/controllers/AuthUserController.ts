@@ -13,9 +13,9 @@ class AuthUserController {
       return res.json(user)
 
     } catch (error) {
-      return res.status(error.status).json(new ErrorResponse(
-        error.message,
-        error.status
+      return res.status(409).json(new ErrorResponse(
+        "emailAlreadyUsed",
+        409
       ))
     }
   }
