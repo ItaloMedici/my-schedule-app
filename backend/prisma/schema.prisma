@@ -14,6 +14,7 @@ model User {
   password  String
   createdAt DateTime   @default(now())
   schedules Schedule[]
+  costumers Costumer[]
 }
 
 model Schedule {
@@ -29,17 +30,20 @@ model Schedule {
   user   User   @relation(fields: [userId], references: [id])
   userId String
 
-  client   Client? @relation(fields: [clientId], references: [id])
+  client   Costumer? @relation(fields: [clientId], references: [id])
   clientId String?
 
   @@map("schedules")
 }
 
-model Client {
+model Costumer {
   id    String  @id @default(uuid())
   name  String
   email String  @unique 
   phone String  @unique
 
   schedules Schedule[]
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
 }
