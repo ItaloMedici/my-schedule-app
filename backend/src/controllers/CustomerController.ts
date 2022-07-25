@@ -15,7 +15,9 @@ class CustomerController {
   }
 
   static async getAll(req: Request, res: Response) {
-    const result = await CustomerService.findAll();
+    const { userId } = req;
+
+    const result = await CustomerService.findAll(userId);
 
     return res.json(result);
   }

@@ -17,7 +17,7 @@ export interface Schedule {
   finished?: boolean;
 }
 
-export interface Client {
+export interface Costumer {
   id: string;
   name: string;
   email: string;
