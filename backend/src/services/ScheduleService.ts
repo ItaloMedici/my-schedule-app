@@ -22,9 +22,9 @@ class ScheduleService {
       price,
       appointment,
       finished,
-      clientId } = scheduleInfo;
+      customerId } = scheduleInfo;
 
-    const schedule = clientId
+    const schedule = customerId
       ? await prismaClient.schedule.upsert({
         create: {
           id,
@@ -33,7 +33,7 @@ class ScheduleService {
           price,
           appointment,
           finished,
-          client: { connect: { id: clientId } },
+          client: { connect: { id: customerId } },
           user: { connect: { id: userId } }
         },
         where: {
@@ -45,7 +45,7 @@ class ScheduleService {
           price,
           appointment,
           finished,
-          client: { connect: { id: clientId } },
+          client: { connect: { id: customerId } },
         },
         include: {
           client: true
@@ -87,9 +87,9 @@ class ScheduleService {
       price,
       appointment,
       finished,
-      clientId } = scheduleInfo;
+      customerId } = scheduleInfo;
 
-    const schedule = clientId
+    const schedule = customerId
       ? await prismaClient.schedule.create({
         data: {
           description,
@@ -97,7 +97,7 @@ class ScheduleService {
           price,
           appointment,
           finished,
-          client: { connect: { id: clientId } },
+          client: { connect: { id: customerId } },
           user: { connect: { id: userId } }
         },
         include: {

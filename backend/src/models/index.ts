@@ -13,7 +13,7 @@ export interface Schedule {
   observation?: string;
   price?: number;
   appointment: Date;
-  clientId?: never;
+  customerId?: never;
   finished?: boolean;
 }
 
