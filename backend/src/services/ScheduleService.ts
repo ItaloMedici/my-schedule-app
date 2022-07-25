@@ -5,6 +5,16 @@ import { NotFound } from "http-errors"
 class ScheduleService {
   static async createOrUpdate(scheduleInfo: Schedule, userId: string) {
 
+    const { id } = scheduleInfo;
+
+    const schedule = id
+      ? this.update(scheduleInfo, userId)
+      : this.create(scheduleInfo, userId)
+
+    return schedule;
+  }
+
+  static async update(scheduleInfo: Schedule, userId: string) {
     const {
       id,
       description,
@@ -17,6 +27,7 @@ class ScheduleService {
     const schedule = clientId
       ? await prismaClient.schedule.upsert({
         create: {
+          id,
           description,
           observation,
           price,
@@ -35,14 +46,12 @@ class ScheduleService {
           appointment,
           finished,
           client: { connect: { id: clientId } },
-          user: { connect: { id: userId } },
         },
         include: {
-          user: true,
           client: true
         }
       })
-      :  await prismaClient.schedule.upsert({
+      : await prismaClient.schedule.upsert({
         create: {
           description,
           observation,
@@ -61,6 +70,45 @@ class ScheduleService {
           appointment,
           finished,
           user: { connect: { id: userId } },
+        },
+        include: {
+          user: true,
+          client: true
+        }
+      })
+
+    return schedule;
+  }
+
+  static async create(scheduleInfo: Schedule, userId: string) {
+    const {
+      description,
+      observation,
+      price,
+      appointment,
+      finished,
+      clientId } = scheduleInfo;
+
+    const schedule = clientId
+      ? await prismaClient.schedule.create({
+        data: {
+          description,
+          observation,
+          price,
+          appointment,
+          finished,
+          client: { connect: { id: clientId } },
+          user: { connect: { id: userId } }
+        },
+        include: {
+          user: true,
+          client: true
+        }
+      })
+      : await prismaClient.schedule.create({
+        data: {
+          ...scheduleInfo,
+          user: { connect: { id: userId } }
         },
         include: {
           user: true,
@@ -94,7 +142,7 @@ class ScheduleService {
         appointment: 'asc'
       }
     });
-    
+
     return allschedule;
   }
 

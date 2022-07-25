@@ -8,9 +8,15 @@ class ScheduleController {
     const schedule = req.body;
     const { userId } = req;
 
-    const result = await ScheduleService.createOrUpdate(schedule, userId);
+    try {
+      const result = await ScheduleService.createOrUpdate(schedule, userId);
+      return res.json(result)
 
-    return res.json(result)
+    } catch (error) {
+      console.log(error)
+      res.status(error?.status || 500).json({ error: error.message })
+    }
+
     
   }
   

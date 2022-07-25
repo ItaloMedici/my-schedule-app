@@ -3,7 +3,7 @@ import prismaClient from "../prisma";
 import { NotFound, Conflict } from "http-errors"
 import { Prisma } from "@prisma/client";
 
-class ClientService {
+class CustomerService {
   static async create(clientInfo: Client) {
 
     try {
@@ -50,4 +50,4 @@ class ClientService {
   }
 }
 
-export default ClientService;
+export default CustomerService;

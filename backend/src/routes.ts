@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { ClientController, AuthUserController, ScheduleController, UserController } from "./controllers";
+import { CustomerController, AuthUserController, ScheduleController, UserController } from "./controllers";
 import { ensureAuth } from "./middlewares/ensureAuth";
 
 const router = Router();
@@ -29,9 +29,9 @@ router.delete("/schedule/:id", ensureAuth, ScheduleController.delete);
 /**
  * Client Routes
  */
-router.post("/client", ensureAuth, ClientController.create);
-router.get("/client", ensureAuth, ClientController.getAll);
-router.get("/client/:id", ensureAuth, ClientController.get);
-router.delete("/client/:id", ensureAuth, ClientController.delete);
+router.post("/client", ensureAuth, CustomerController.create);
+router.get("/client", ensureAuth, CustomerController.getAll);
+router.get("/client/:id", ensureAuth, CustomerController.get);
+router.delete("/client/:id", ensureAuth, CustomerController.delete);
 
 export { router }

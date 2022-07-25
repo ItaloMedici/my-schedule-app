@@ -1,6 +1,6 @@
 import AuthUserController from "./AuthUserController";
-import ClientController from "./ClientController";
+import CustomerController from "./CustomerController";
 import ScheduleController from "./ScheduleController";
 import UserController from "./UserController";
 
-export { AuthUserController, ClientController, ScheduleController, UserController }
+export { AuthUserController, CustomerController, ScheduleController, UserController }

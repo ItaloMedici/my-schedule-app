@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import ClientService from "../services/ClientService";
+import CustomerService from "../services/CustomerService";
 
-class ClientController {
+class CustomerController {
   static async create(req: Request, res: Response) {
     const client = req.body;
     try {
-      const result = await ClientService.create(client);
+      const result = await CustomerService.create(client);
       
       return res.json(result)
     } catch (error) {
@@ -15,7 +15,7 @@ class ClientController {
   }
 
   static async getAll(req: Request, res: Response) {
-    const result = await ClientService.findAll();
+    const result = await CustomerService.findAll();
 
     return res.json(result);
   }
@@ -24,7 +24,7 @@ class ClientController {
     const { id } = req.params;
 
     try {
-      const result = await ClientService.find(id)
+      const result = await CustomerService.find(id)
 
       return res.json(result);
 
@@ -37,7 +37,7 @@ class ClientController {
     const { id } = req.params;
     
     try {
-      const result = await ClientService.delete(id)
+      const result = await CustomerService.delete(id)
 
       return res.json(result);
 
@@ -47,4 +47,4 @@ class ClientController {
   }
 }
 
-export default ClientController;
+export default CustomerController;
