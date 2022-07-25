@@ -27,11 +27,11 @@ router.get("/schedule/:id", ensureAuth, ScheduleController.get);
 router.delete("/schedule/:id", ensureAuth, ScheduleController.delete);
 
 /**
- * Client Routes
+ * Customer Routes
  */
-router.post("/client", ensureAuth, CustomerController.create);
-router.get("/client", ensureAuth, CustomerController.getAll);
-router.get("/client/:id", ensureAuth, CustomerController.get);
-router.delete("/client/:id", ensureAuth, CustomerController.delete);
+router.post("/customer", ensureAuth, CustomerController.create);
+router.get("/customers", ensureAuth, CustomerController.getAll);
+router.get("/customer/:id", ensureAuth, CustomerController.get);
+router.delete("/customer/:id", ensureAuth, CustomerController.delete);
 
 export { router }
