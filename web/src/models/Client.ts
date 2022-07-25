@@ -1,7 +1,10 @@
-export interface Client {
+import { User } from "./User";
+
+export interface Customer {
   id: string;
   name: string;
   email: string;
   phone: string;
+  userId: string
 }
 

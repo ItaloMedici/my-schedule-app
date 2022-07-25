@@ -1,4 +1,4 @@
-import { Client } from "./Client";
+import { Customer } from "./Client";
 import { User } from "./User";
 
 export interface ISchedule {
@@ -8,8 +8,8 @@ export interface ISchedule {
   price?: number;
   appointment: Date;
   finished: boolean;
-  user: User,
-  client: Client
+  userId: string,
+  customerId: string
 }
 
 export class Schedule implements ISchedule {
@@ -19,14 +19,14 @@ export class Schedule implements ISchedule {
   price?: number | undefined;
   appointment: Date;
   finished: boolean;
-  user: User;
-  client: Client;
+  userId: string;
+  customerId: string;
 
   constructor(user?: User | null) {
     this.finished = false;
     this.price = 0;
     if (user) {
-      this.user = user;
+      this.userId = user.id;
     }
     this.appointment = new Date();
   }
