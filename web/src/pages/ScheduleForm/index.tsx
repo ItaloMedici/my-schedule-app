@@ -2,13 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Checkbox from '../../components/Checkbox';
+import { CustomerSelect } from '../../components/CustomerSelect';
 import DialogDelete from '../../components/DialogDelete';
 import { InputText } from '../../components/Fields/InputText';
 import InputTextArea from '../../components/Fields/InputTextArea';
+import Select from '../../components/Select';
 import { ToolBarForm } from '../../components/ToolBarForm';
 import { useAuth } from '../../contexts/auth';
 import { useToast } from '../../contexts/toast';
+import { Customer } from '../../models/Client';
 import { Schedule } from '../../models/Schedule';
+import { getCustomers } from '../../services/CustumerService';
 import { deleteSchedule, getSchedule, saveOrUpdateSchedule } from '../../services/ScheduleService';
 
 import { Container, DateWrapper, StatusWrapper } from './styles';
@@ -28,13 +32,13 @@ const ScheduleForm: React.FC = () => {
       (async () => {
         try {
           const response = await getSchedule(idSchedule)
+          console.log(response.data.customerId)
           setSchudule(response.data);
         } catch (error: any) {
           showError(error.message)
         }
       })()
     } else if (!schedule) {
-      console.log("S")
       setSchudule(new Schedule(user))
       setAllowEdit(true)
     }
@@ -57,8 +61,18 @@ const ScheduleForm: React.FC = () => {
 
       if (response.status === 200) {
         showSuccess('Registrado deletado com sucesso!');
-        navigate('/', {replace: true})
+        navigate('/', { replace: true })
       }
+    }
+  }
+
+  const handleChange = (event: any) => {
+    console.log(event)
+    if (schedule) {
+      setSchudule({
+        ...schedule,
+        [event.target.name]: event.target.value
+      })
     }
   }
 
@@ -74,28 +88,33 @@ const ScheduleForm: React.FC = () => {
         />
         {schedule &&
           <>
-            <StatusWrapper>
-              <InputText
-                name="description"
-                value={schedule.description}
-                idLabel="label.description"
-                disabled={!allowEdit}
-                css={{ flex: 1 }}
-              />
-
-            </StatusWrapper>
+            <CustomerSelect
+              name='customer'
+              onChange={(value) => setSchudule({...schedule, customerId: value})}
+              value={schedule.customerId}
+              disabled={!allowEdit}
+            />
+            <InputText
+              name="description"
+              value={schedule.description}
+              idLabel="label.description"
+              disabled={!allowEdit}
+              onChange={handleChange}
+            />
             <DateWrapper>
               <InputText
                 name="appointment"
                 value={formatDate(schedule.appointment)}
                 idLabel="label.date"
                 disabled={!allowEdit}
+                onChange={handleChange}
               />
               <InputText
                 name="appointment"
                 value={formatTime(schedule.appointment)}
                 idLabel="label.time"
                 disabled={!allowEdit}
+                onChange={handleChange}
               />
             </DateWrapper>
             <InputText
@@ -103,13 +122,15 @@ const ScheduleForm: React.FC = () => {
               value={formatNumber(schedule.price || 0, { style: 'currency', currency: 'BRL' })}
               idLabel="label.price"
               disabled={!allowEdit}
+              onChange={handleChange}
             />
-            <InputText
+            {/*             <InputText
               name="client"
               value={schedule.client}
               idLabel="label.customer"
-              disabled={!allowEdit}
-            />
+              disabled
+              onChange={handleChange}
+            /> */}
             <Checkbox
               idLabel='label.finishedAppointment'
               checked={schedule.finished}
@@ -121,6 +142,7 @@ const ScheduleForm: React.FC = () => {
               value={schedule.observation}
               idLabel="label.observation"
               disabled={!allowEdit}
+              onChange={handleChange}
             />
 
           </>
