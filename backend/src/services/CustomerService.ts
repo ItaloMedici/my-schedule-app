@@ -1,12 +1,12 @@
 import prismaClient from "../prisma";
 import { NotFound, Conflict } from "http-errors"
-import { Costumer, Prisma } from "@prisma/client";
+import { Customer, Prisma } from "@prisma/client";
 
 class CustomerService {
-  static async create(clientInfo: Costumer) {
+  static async create(clientInfo: Customer) {
 
     try {
-      const client = await prismaClient.costumer.create({
+      const client = await prismaClient.customer.create({
         data: {
           ...clientInfo
         }
@@ -24,16 +24,16 @@ class CustomerService {
   }
 
   static async findAll(userId: string) {
-    const allClients = await prismaClient.user.findMany({
+    const allClients = await prismaClient.customer.findMany({
       where: {
-        
+        userId
       }
     });
     return allClients;
   }
 
   static async find(id: string) {
-    const client = await prismaClient.costumer.findUnique({
+    const client = await prismaClient.customer.findUnique({
       where: { id }
     });
 
@@ -43,7 +43,7 @@ class CustomerService {
   }
 
   static async delete(id: string) {
-    const client = await prismaClient.costumer.delete({
+    const client = await prismaClient.customer.delete({
       where: { id }
     });
 
