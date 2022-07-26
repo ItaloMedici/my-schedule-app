@@ -1,16 +1,15 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
+import { Flex } from '../base/Utils';
 import { Button } from '../Button';
 
 import {
   AlertDialog,
-  AlertDialogAction, 
-  AlertDialogCancel, 
-  AlertDialogContent, 
-  AlertDialogDescription, 
-  AlertDialogTitle, 
-  AlertDialogTrigger, 
-  Flex
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogTitle
 } from './styles';
 
 type DialogDeleteType = {
@@ -24,16 +23,20 @@ const DialogDelete: React.FC<DialogDeleteType> = ({ open, onHide, onDelete }) =>
   return (
     <AlertDialog open={open} onOpenChange={onHide}>
       <AlertDialogContent >
-        <AlertDialogTitle>{formatMessage({id: 'messages.deleteDialogTitle'})}</AlertDialogTitle>
+        <AlertDialogTitle>{formatMessage({ id: 'messages.deleteDialogTitle' })}</AlertDialogTitle>
         <AlertDialogDescription>
-          {formatMessage({id: 'messages.deleteDialogContent'})}
+          {formatMessage({ id: 'messages.deleteDialogContent' })}
         </AlertDialogDescription>
-        <Flex>
+        <Flex css={{
+          width: '100%',
+          justifyContent: 'flex-end',
+          gap: '$4'
+        }}>
           <AlertDialogCancel asChild>
             <Button color='neutral' idLabel='label.cancel' onClick={onHide} />
           </AlertDialogCancel>
           <AlertDialogAction asChild>
-            <Button color='error' idLabel='label.yesDeleteRecord' onClick={onDelete}/>
+            <Button color='danger' idLabel='label.yesDeleteRecord' onClick={onDelete} />
           </AlertDialogAction>
         </Flex>
       </AlertDialogContent>
