@@ -20,9 +20,7 @@ export const FieldBase = css({
     border: '1px solid $gray5',
   
     fontSize: '$md',
-  
-    marginBottom: '$4',
-  
+    
     '&:focus': {
       outline: 'none',
       borderColor: '$primary',
@@ -61,9 +59,19 @@ export const FieldBase = css({
           }
         }
       },
+
+      noMargin: {
+        true: {
+          margin: 'none'
+        }, 
+        false: {
+          marginBottom: '$4',
+        }
+      }
     },
   
     defaultVariants: {
-      size: 'sm'
+      size: 'sm',
+      noMargin: false
     }
 })
