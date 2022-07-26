@@ -38,7 +38,7 @@ export const ToolBarForm: React.FC<ToolBarType> = ({ allowEdit, allowDelete, onD
             <CheckIcon />
           </Button>
           <Button 
-            color='error' 
+            color='danger' 
             onClick={onDelete}
             aria-label={formatMessage({id: 'label.delete'})}
             title={formatMessage({id: 'label.delete'})}
