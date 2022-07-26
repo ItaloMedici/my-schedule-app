@@ -17,6 +17,7 @@ const Auth: React.FC = () => {
   const { formatMessage } = useIntl();
 
   const [values, setValues] = useState<User>({
+    id: "",
     email: "",
     password: "",
   });
@@ -34,7 +35,7 @@ const Auth: React.FC = () => {
     const { email, password } = values;
 
     if (email && password) {
-      signIn({ email, password });
+      signIn(values);
     } else {
       setInvalid(true)
     }

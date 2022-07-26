@@ -38,8 +38,8 @@ export const AuthProvider: React.FC = ({ children }) => {
     }
   }, [])
 
-  const signIn = async ({ email, password }: User) => {
-    await authenticate({ email, password })
+  const signIn = async (user: User) => {
+    await authenticate(user)
       .then(resp => {
         setUser(resp.data);
 
@@ -63,8 +63,8 @@ export const AuthProvider: React.FC = ({ children }) => {
     navigate('/login', { replace: true })
   }
 
-  const signUp = async ({ email, password, name }: User) => {
-    await register({ email, password, name })
+  const signUp = async (user: User) => {
+    await register(user)
       .then(res => {  
         navigate('/home', { replace: true });
         showSuccess(formatMessage({id: "messages.successfullyRegistered"}))
