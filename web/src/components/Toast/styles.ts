@@ -1,7 +1,7 @@
 import { amberA, amberDark, greenA, greenDark, redA, redDark } from "@radix-ui/colors";
 import * as ToastPrimitive from '@radix-ui/react-toast';
 import { keyframes, styled } from "@stitches/react";
-import { BaseButton } from "../Button/styles";
+import { BaseButton } from "../base/Button";
 
 const VIEWPORT_PADDING = 25;
 
@@ -98,7 +98,7 @@ const StyledToast = styled(ToastPrimitive.Root, {
 
 const StyledTitle = styled(ToastPrimitive.Title, {
   gridArea: 'title',
-  fontWeight: 500,
+  fontWeight: '$medium',
   fontSize: '$sm',
 
   variants: {
@@ -139,6 +139,8 @@ const StyledAction = styled(ToastPrimitive.Action, {
 });
 
 const ButtonToast = styled(BaseButton, {
+  position: 'relative',
+
   padding: '$1',
   border: '1px solid transparent',
 
