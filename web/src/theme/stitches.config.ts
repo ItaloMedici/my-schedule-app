@@ -1,4 +1,4 @@
-import { amber, amberA, amberDark, gray, green, greenA, greenDark, red, redA, redDark, sky, yellow, yellowA, yellowDark } from "@radix-ui/colors";
+import { amber, amberA, amberDark, blackA, gray, green, greenA, greenDark, red, redA, redDark, sky, yellow, yellowA, yellowDark } from "@radix-ui/colors";
 import { createStitches } from "@stitches/react";
 
 export const {
@@ -24,11 +24,13 @@ export const {
       error: red.red11,
       errorDark: redDark.red8,
       errorA: redA.redA3,
+      errorA4: redA.redA4,
       errorLight: red.red2,
 
       success: green.green9,
       successDark: greenDark.green8,
       successA: greenA.greenA3,
+      successA4: greenA.greenA4,
       successLight: green.green2,
 
       warning: amber.amber11,
@@ -37,6 +39,8 @@ export const {
       warningLight: amber.amber2,
 
       info: sky.sky8,
+
+      modal: blackA.blackA9,
 
       ...gray,
     },
@@ -47,9 +51,9 @@ export const {
 
     shadows: {
       primary: '0 0 0 0.2rem $colors$primaryA',
-      error: '0 0 0 0.2rem $colors$errorA',
-      gray: '0 0 0 0.2rem $colors$gray3',
-      success: '0 0 0 0.2rem $colors$successA',
+      error: '0 0 0 0.2rem $colors$errorLight',
+      gray: '0 0 0 0.2rem $colors$gray2',
+      success: `0 0 0 0.2rem ${greenA.greenA2}`,
       elevation: '0 .3rem .5rem 0 $colors$gray4'
     },
 
@@ -76,7 +80,7 @@ export const {
       80: "36rem"
     },
 
-    borderWidth: {
+    borderWidths: {
       thin: "1px solid",
       medium: "2.5px solid",
       bold: "4px solid"
@@ -91,9 +95,9 @@ export const {
       full: "999px"
     },
 
-    fontWeight: {
+    fontWeights: {
       regular: "400",
-      medium: "600",
+      medium: "500",
       bold: "700"
     },
 

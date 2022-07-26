@@ -1,38 +1,10 @@
+import { greenA, redA } from "@radix-ui/colors";
 import { styled } from "../../theme/stitches.config";
-
-export const BaseButton = styled('button', {
-  fontSize: '$md',
-  borderRadius: '$md',
-  height: 'fit-content',
-  position: 'relative',
-  display: 'inline-flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  gap: '$2',
-  cursor: 'pointer',
-
-  transition: 'background .2s',
-  outline: 'none',
-
-  '& label': {
-    cursor: 'pointer',
-    fontSize: '$sm',
-    flex: 1,
-  },
-
-  '& svg': {
-    height: '1.05rem',
-    width: '1.05rem',
-  },
-
-  '&:disabled': {
-    opacity: .5,
-    pointerEvents: 'none',
-  }
-})
-
+import { BaseButton } from "../base/Button";
 
 export const ButtonStyled = styled(BaseButton, {
+  position: 'relative',
+
   variants: {
     size: {
       xs: {
@@ -77,12 +49,14 @@ export const ButtonStyled = styled(BaseButton, {
       },
       neutral: {
         background: '$background',
+        
         '&:hover': {
           background: '$gray2',
         },
 
         '&:focus, &:active': {
-          boxShadow: '$gray2'
+          outline: '1px solid $colors$gray4',
+          boxShadow: '$gray'
         },
 
         '& label': {
@@ -94,42 +68,48 @@ export const ButtonStyled = styled(BaseButton, {
         }
       },
       success: {
-        background: '$success',
+        background: '$successA',
+
         '&:hover': {
-          background: '$successDark',
+          background: '$successA4',
         },
 
         '&:active, &:focus': {
+          outline: '1px solid',
+          outlineColor: greenA.greenA5,
           boxShadow: '$success'
         },
 
         '& label': {
-          color: '$background',
+          color: '$successDark',
         },
 
         '& svg path': {
-          color: '$background',
+          color: '$successDark',
         }
       },
-      error: {
-        background: '$error',
+      danger: {
+        background: '$errorA',
+
         '&:hover': {
-          background: '$errorDark',
+          background: '$errorA4',
         },
 
         '&:active, &:focus': {
+          outline: '1px solid',
+          outlineColor: redA.redA5,
           boxShadow: '$error'
         },
 
         '& label': {
-          color: '$background',
+          color: '$errorDark',
         },
 
         '& svg path': {
-          color: '$background',
+          color: '$errorDark',
         }
       }
-    }
+    },
   },
 
   defaultVariants: {

@@ -23,7 +23,13 @@
     "finishedAppointment": "Atendimento Finalizado",
     "observation": "Observação",
     "yesDeleteRecord": "Sim, deletar registro",
-    "cancel": "Cancelar"
+    "cancel": "Cancelar",
+    "selectCustumer": "Selecione um cliente...",
+    "custumer":"Cliente",
+    "editCustomer": "Editar Cliente",
+    "createNewCustomer": "Criar Novo Cliente",
+    "phone": "Telefone",
+    "name": "Nome"
   },
   "messages": {
     "signUp": "Não possui uma conta? Registre-se.",

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Flex } from '../../components/base/Utils';
 import Checkbox from '../../components/Checkbox';
+import CustomerModal from '../../components/CustomerModal';
 import { CustomerSelect } from '../../components/CustomerSelect';
 import DialogDelete from '../../components/DialogDelete';
 import { InputText } from '../../components/Fields/InputText';
@@ -10,9 +12,9 @@ import Select from '../../components/Select';
 import { ToolBarForm } from '../../components/ToolBarForm';
 import { useAuth } from '../../contexts/auth';
 import { useToast } from '../../contexts/toast';
-import { Customer } from '../../models/Client';
+import { Customer } from '../../models/Customer';
 import { Schedule } from '../../models/Schedule';
-import { getCustomers } from '../../services/CustumerService';
+import { getCustomers } from '../../services/CustomerService';
 import { deleteSchedule, getSchedule, saveOrUpdateSchedule } from '../../services/ScheduleService';
 
 import { Container, DateWrapper, StatusWrapper } from './styles';
@@ -67,7 +69,6 @@ const ScheduleForm: React.FC = () => {
   }
 
   const handleChange = (event: any) => {
-    console.log(event)
     if (schedule) {
       setSchudule({
         ...schedule,
@@ -90,7 +91,7 @@ const ScheduleForm: React.FC = () => {
           <>
             <CustomerSelect
               name='customer'
-              onChange={(value) => setSchudule({...schedule, customerId: value})}
+              onChange={(value) => setSchudule({ ...schedule, customerId: value })}
               value={schedule.customerId}
               disabled={!allowEdit}
             />
@@ -144,7 +145,7 @@ const ScheduleForm: React.FC = () => {
               disabled={!allowEdit}
               onChange={handleChange}
             />
-
+            <Flex />
           </>
         }
       </Container>

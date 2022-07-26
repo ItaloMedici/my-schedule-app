@@ -1,15 +1,19 @@
-import { styled } from "@stitches/react";
+import { styled } from "../../theme/stitches.config";
 import { Button } from "../Button";
 import { BaseButton } from "../Button/styles";
+import { LabelBase } from "../Fields/Base";
 
 export const Container = styled('div', {
- position: 'relative'
+  width: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  position: 'relative',
+  boxSizing: 'border-box'
 })
 
-export const AddButton = styled('button', {
-  position: 'absolute',
-  bottom: 'calc(50% - 17px + 16px)',
-  right: 0,
+export const Label = styled('label', LabelBase);
 
-  background: 'red',
+export const Wrapper = styled('div', {
+  display: 'flex',
+  gap: '$4'
 })

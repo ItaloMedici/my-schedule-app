@@ -3,13 +3,16 @@ import CustomerService from "../services/CustomerService";
 
 class CustomerController {
   static async create(req: Request, res: Response) {
-    const client = req.body;
+    const customer = req.body;
+    const { userId } = req;
+
     try {
-      const result = await CustomerService.create(client);
-      
+      const result = await CustomerService.create(customer, userId);
+
       return res.json(result)
     } catch (error) {
-      return res.json({error: error.message})
+      console.log(error)
+      return res.status(error?.status || 500).json({ error: error.message })
     }
 
   }
@@ -37,7 +40,7 @@ class CustomerController {
 
   static async delete(req: Request, res: Response) {
     const { id } = req.params;
-    
+
     try {
       const result = await CustomerService.delete(id)
 

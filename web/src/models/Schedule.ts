@@ -1,4 +1,4 @@
-import { Customer } from "./Client";
+import { Customer } from "./Customer";
 import { User } from "./User";
 
 export interface ISchedule {

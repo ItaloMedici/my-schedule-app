@@ -9,7 +9,7 @@ function App() {
   GlobalStyle();
 
   return (
-    <IntlProvider locale="pt-BR" defaultLocale="en" messages={messages}>
+    <IntlProvider locale="BR" defaultLocale="en" messages={messages}>
       <ToastProvider>
         <AuthProvider>
           <Routes />
