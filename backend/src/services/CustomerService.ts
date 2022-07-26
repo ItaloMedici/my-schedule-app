@@ -3,23 +3,22 @@ import { NotFound, Conflict } from "http-errors"
 import { Customer, Prisma } from "@prisma/client";
 
 class CustomerService {
-  static async create(clientInfo: Customer) {
+  static async create(customer: Customer, userId:string) {
 
-    try {
-      const client = await prismaClient.customer.create({
-        data: {
-          ...clientInfo
-        }
-      });
-  
-      return client
-    } catch (e) {
-      if (e instanceof Prisma.PrismaClientKnownRequestError) {
-        if (e.code === 'P2002') {
-          return new Conflict("There is a unique constraint violation, check that has to be unique")
-        }
+    const client = await prismaClient.customer.upsert({
+      create: {
+        ...customer,
+        userId
+      },
+      update: {
+        ...customer,
+      },
+      where: {
+        phone: customer.phone
       }
-    }
+    });
+
+    return client
 
   }
 
