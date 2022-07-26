@@ -10,7 +10,7 @@ type ButtonProps =
     iconLeft?: boolean,
     idLabel?: string,
     size?: "xs" | "sm" | "md" | "xl",
-    color?: "primary" | "neutral" | "error" | "success" | "warning",
+    color?: "primary" | "neutral" | "danger" | "success",
     disabled?: boolean,
   }
 
