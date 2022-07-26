@@ -23,7 +23,13 @@
     "finishedAppointment": "Finished appointment",
     "observation": "observation",
     "yesDeleteRecord": "yes, delete record",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "selectCustumer": "Select Customer...",
+    "custumer":"Customer",
+    "editCustomer": "Edit Customer",
+    "createNewCustomer": "Create new customer",
+    "phone": "Phone",
+    "name": "Name"
   },
   "messages": {
     "signUp": "Don't have an account? Sign up.",
