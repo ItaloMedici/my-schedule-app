@@ -1,21 +1,9 @@
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { styled } from '../../theme/stitches.config';
-import { LabelBase } from '../Fields/Base';
-
-export const Wrapper = styled('div', {
-  width: '100%',
-  display: 'flex',
-  flexDirection: 'column',
-  position: 'relative',
-  boxSizing: 'border-box'
-})
-
-export const Label = styled('label', LabelBase);
 
 const StyledTrigger = styled(SelectPrimitive.SelectTrigger, {
   all: 'unset',
-
-  flex: 1,
+  minWidth: '30%',
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'flex-start',
