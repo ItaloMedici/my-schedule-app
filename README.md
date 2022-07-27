@@ -1,3 +1,6 @@
+<div align="center" style="padding: 4px;">
+**🚨 NOTICE: This repo turned into an organization! So, latest implementations are available on [Atendim](https://github.com/atendim)**
+</div>
 
 # My Schedule 🗓️
 My Schedule is a simple app for manage and schedule appointments between providers and customers. 
